@@ -102,8 +102,8 @@ const shadow = {
       flexDirection: 'row',
       alignItems: 'center',
       borderRadius: 8,
-      width: 300,
-      marginVertical: 20
+      width: '100%',
+      marginVertical: 20,
     },
     textWrapper: {
       flex: 1,

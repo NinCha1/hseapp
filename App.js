@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import Login from './src/routes/Login/Login';
+import StackNav from './src/navigation/StackNav';
 
 export default class App extends Component {
   render() {
     return(
-      <Login></Login>
+      <NavigationContainer>
+        <StackNav/>
+      </NavigationContainer>
     )
   }
 }
