@@ -8,6 +8,5 @@ export default StyleSheet.create({
     },
     sideMenu: {
         width: '20%',
-        backgroundColor: Colors.addBack,
     }
 })

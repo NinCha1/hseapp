@@ -6,17 +6,35 @@ export default StyleSheet.create({
         width: '20%',
         backgroundColor: Colors.addBack,
         alignItems: 'center',
+        flexDirection: 'column',
+        direction: 'flex',
+        // justifyContent: 'space-between',
     },
     containerSide: {
-        width: 234,
+        width: '15%',
         height: 48,
     },
     button: {
-        width: 234,
-        height: 24,
+        marginTop: 15,
+        width: '90%',
+        height: '5%',
         left: 0,
         top: 0,
         borderRadius: 8,
         backgroundColor: Colors.loginBack,
+        // padding: (12, 16, 12, 16),
+        radius: 8,
+        alignItems: 'center',
+        flexDirection: 'row'
+    },
+    textButton: {
+        marginLeft: 6,
+        fontFamily: 'Inter',
+        fontStyle: 'normal',
+        fontSize: 16,
+        color: 'rgba(0, 0, 0, 0.5)',
+    },
+    icon: {
+        marginLeft: 5,
     }
 })

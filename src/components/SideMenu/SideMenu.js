@@ -22,18 +22,20 @@ export default class SideMenu extends Component{
         return(
             <View style={styles.tab}>
                 <TouchableOpacity onPress={this.scheduleBtn} style={styles.button}>
-                    <Image source={require('../../img/Schedule.png')}/>
-                    <Text>Schedule</Text>
+                    <Image source={require('../../img/Schedule.png')} style={styles.icon}/>
+                    <Text style={styles.textButton}>Schedule</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={this.coursesBtn} style={styles.button}>
-                    <Text>Courses</Text>
+                    <Image source={require('../../img/Courses.png')} style={styles.icon}/>
+                    <Text style={styles.textButton}>Courses</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={this.gradesBtn} style={styles.button}>
-                    <Text>Grades</Text>
+                    <Image source={require('../../img/Grades.png')} style={styles.icon}/>
+                    <Text style={styles.textButton}>Grades</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => {}} style={styles.button}>
+                {/* <TouchableOpacity onPress={() => {}} style={styles.button}>
                     <Text>Log out</Text>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
             </View>
         )
     }
