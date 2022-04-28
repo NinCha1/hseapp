@@ -63,7 +63,7 @@ export const Timetable = () => {
                     keyExtractor={(item, index) => index}
                 /> 
             )}
-            <Calendar/>
+            <Calendar style={styles.components}/>
         </SafeAreaView>
     )
 }
@@ -71,12 +71,11 @@ export const Timetable = () => {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      paddingTop: StatusBar.currentHeight,
-      marginHorizontal: 16
+      flexDirection: 'row',
     },
     item: {
       backgroundColor: "#f9c2ff",
-      padding: 20,
+      padding: 10,
       marginVertical: 8
     },
     header: {
@@ -92,5 +91,7 @@ const styles = StyleSheet.create({
     timeEnd: {
         marginBottom: 0,
     },
-
+    components: {
+        width: '20%',
+    }
 });

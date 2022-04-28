@@ -6,7 +6,4 @@ export default StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
     },
-    sideMenu: {
-        width: '20%',
-    }
 })
