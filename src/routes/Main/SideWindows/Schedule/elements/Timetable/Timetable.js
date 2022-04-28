@@ -3,6 +3,7 @@ import commonStyles from '../../../../../../common/styles';
 import { View, SectionList, StyleSheet, Text, StatusBar, SafeAreaView } from 'react-native';
 import { useEffect, useState } from 'react';
 import { ActivityIndicator } from 'react-native';
+import Calendar from '../../../../../../components/Calendar/Calendar';
 // import styles from './styles';
 
 
@@ -17,8 +18,8 @@ export const Timetable = () => {
 
     const Item = ({item}) => (
         <View style={styles.item}>
-            <Text>{item.timeStart}</Text>
-            <Text>{item.timeEnd}</Text>
+            <Text style={styles.timeStart}>{item.timeStart}</Text>
+            <Text style={styles.timeEnd}>{item.timeEnd}</Text>
             <Text>{item.type}</Text>
             <Text>{item.subjectName}</Text>
             <Text>{item.visitType}</Text>
@@ -62,7 +63,7 @@ export const Timetable = () => {
                     keyExtractor={(item, index) => index}
                 /> 
             )}
-            <Text>Blya</Text>
+            <Calendar/>
         </SafeAreaView>
     )
 }
@@ -84,5 +85,12 @@ const styles = StyleSheet.create({
     },
     title: {
       fontSize: 24
-    }
+    },
+    timeStart: {
+        marginTop: 0,
+    },
+    timeEnd: {
+        marginBottom: 0,
+    },
+
 });
