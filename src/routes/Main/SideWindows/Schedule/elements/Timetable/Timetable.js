@@ -6,21 +6,36 @@ import { ActivityIndicator } from 'react-native';
 // import styles from './styles';
 
 
-const Item = ({day}) => {
-    <View style={styles.item}>
-        <Text style={styles.title}>{day}</Text>
-    </View>
+function renameKey( obj, oldKey, newKey) {
+    obj[newKey] = obj[oldKey];
+    delete obj[oldKey];
 }
 
 export const Timetable = () => {
     const [data, setData] = useState([]);
     const [isLoading, setLoading] = useState(true);
 
+    const Item = ({item}) => (
+        <View>
+            <Text style={styles.title}>{item.id}</Text>
+            <Text>{item.type}</Text>
+        </View>
+    );
+
     const getSchedule = async () => {
         try {
             const response = await fetch('https://my-json-server.typicode.com/SKYMAN44/FAKEJSONSERVER/timetable/1/schedule');
             const json = await response.json();
-            setData(json);
+            for(var i = 0; i < json.length; i++) {
+                delete json[i].timetableId
+            }
+            const arr = JSON.parse(JSON.stringify(json));
+            arr.forEach(element => {
+                renameKey(element, 'day','title')
+                renameKey(element, 'timeSlot', 'data')
+            });
+            const updatedJson = JSON.stringify(arr);
+            setData(arr);
         } catch(error) {
             console.error(error);
         } finally {
@@ -32,19 +47,21 @@ export const Timetable = () => {
         getSchedule();
     }, []);
 
+    console.log(data)
+
     return (
         <SafeAreaView style={styles.container}>
             {isLoading ? <ActivityIndicator/> : (
-                <SectionList 
+                 <SectionList
                     sections={data}
+                    renderItem={Item}
+                    renderSectionHeader={({section}) => (
+                        <Text style={styles.header}>{section.title}</Text>
+                    )} 
                     keyExtractor={(item, index) => index}
-                    renderItem={({item}) => <Item day={item.timeSlot}/>}
-                    renderSectionHeader={({section: {day}}) => (
-                        <Text style={styles.header}>{day}</Text>
-                    )}
-                    
-                />
+                /> 
             )}
+            <Text>Blya</Text>
         </SafeAreaView>
     )
 }
