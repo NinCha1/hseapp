@@ -16,9 +16,12 @@ export const Timetable = () => {
     const [isLoading, setLoading] = useState(true);
 
     const Item = ({item}) => (
-        <View>
-            <Text style={styles.title}>{item.id}</Text>
+        <View style={styles.item}>
+            <Text>{item.timeStart}</Text>
+            <Text>{item.timeEnd}</Text>
             <Text>{item.type}</Text>
+            <Text>{item.subjectName}</Text>
+            <Text>{item.visitType}</Text>
         </View>
     );
 
@@ -46,8 +49,6 @@ export const Timetable = () => {
     useEffect(() => {
         getSchedule();
     }, []);
-
-    console.log(data)
 
     return (
         <SafeAreaView style={styles.container}>
