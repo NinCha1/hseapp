@@ -4,7 +4,7 @@ import { View, SectionList, StyleSheet, Text, StatusBar, SafeAreaView } from 're
 import { useEffect, useState } from 'react';
 import { ActivityIndicator } from 'react-native';
 import Calendar from '../../../../../../components/Calendar/Calendar';
-// import styles from './styles';
+import styles from './styles';
 
 
 function renameKey( obj, oldKey, newKey) {
@@ -18,11 +18,16 @@ export const Timetable = () => {
 
     const Item = ({item}) => (
         <View style={styles.item}>
-            <Text style={styles.timeStart}>{item.timeStart}</Text>
-            <Text style={styles.timeEnd}>{item.timeEnd}</Text>
-            <Text>{item.type}</Text>
-            <Text>{item.subjectName}</Text>
-            <Text>{item.visitType}</Text>
+            <View style={styles.timeCont}>
+                <Text style={styles.timeStart}>{item.timeStart}</Text>
+                <Text style={styles.timeEnd}>{item.timeEnd}</Text>
+            </View>
+            <View style={styles.delimeter}/>
+            <View style={styles.infoCont}>
+                <Text style={styles.type}>{item.type}</Text>
+                <Text style={styles.subjectName}>{item.subjectName}</Text>
+                <Text style={styles.visitType}>{item.visitType}</Text>
+            </View>
         </View>
     );
 
@@ -61,37 +66,9 @@ export const Timetable = () => {
                         <Text style={styles.header}>{section.title}</Text>
                     )} 
                     keyExtractor={(item, index) => index}
-                /> 
+                />
             )}
             <Calendar style={styles.components}/>
         </SafeAreaView>
     )
 }
-  
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      flexDirection: 'row',
-    },
-    item: {
-      backgroundColor: "#f9c2ff",
-      padding: 10,
-      marginVertical: 8
-    },
-    header: {
-      fontSize: 32,
-      backgroundColor: "#fff"
-    },
-    title: {
-      fontSize: 24
-    },
-    timeStart: {
-        marginTop: 0,
-    },
-    timeEnd: {
-        marginBottom: 0,
-    },
-    components: {
-        width: '20%',
-    }
-});

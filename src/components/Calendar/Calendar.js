@@ -78,7 +78,7 @@ export default class Calendar extends Component {
                 );
             });
         return(
-            <View style={{width: '25%'}}>
+            <View style={{width: '25%', height: '30%'}}>
                 <Text style={{
                     fontWeight: 'bold',
                     fontSize: 18,
