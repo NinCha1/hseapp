@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import {Timetable} from "./elements/Timetable/Timetable";
-import Assigments from "./elements/Assigments/Assigments";
+import {Assigments} from "./elements/Assigments/Assigments";
 
 const Tab = createMaterialTopTabNavigator();
 
