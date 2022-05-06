@@ -5,10 +5,9 @@ export default StyleSheet.create({
     tab: {
         width: '20%',
         backgroundColor: Colors.addBack,
-        alignItems: 'center',
         flexDirection: 'column',
         direction: 'flex',
-        // justifyContent: 'space-between',
+        justifyContent: 'space-between',
     },
     containerSide: {
         width: '15%',
@@ -36,5 +35,17 @@ export default StyleSheet.create({
     },
     icon: {
         marginLeft: 5,
+    },
+    upper: {
+        height: '85%',
+        alignItems: 'center',
+    },
+    bottom: {
+        // width: '100%',
+        height: '100%',
+        justifyContent: 'flex-start',
+    },
+    logout: {
+        marginLeft: 25,
     }
 })
