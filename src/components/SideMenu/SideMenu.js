@@ -5,6 +5,7 @@ import Grades from '../../routes/Main/SideWindows/Grades/Grades';
 import Schedule from '../../routes/Main/SideWindows/Schedule/Schedule';
 import {navigateToMenu} from '../../routes/Main/Main'
 import styles from './stylesSideMenu';
+import Colors from '../../common/Colors';
 
 
 export default class SideMenu extends Component{
@@ -46,7 +47,12 @@ export default class SideMenu extends Component{
                 </View>
                 <View style={styles.bottom}>
                     <TouchableOpacity onPress={this.navigateToMenu} style={styles.logout}>
+                        <Image source={require('../../img/logout.png')} style={styles.icon}/>
                         <Text style={{color: '#C9241A', fontFamily: 'Inter', fontWeight: '500', fontSize: 16, lineHeight: 19}}>Log out</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => {}} style={styles.logout}>
+                        <Image source={require('../../img/Settings.png')} style={styles.icon}/>
+                        <Text style={{color: Colors.text_second, fontFamily: 'Inter', fontWeight: '500', fontSize: 16, lineHeight: 19}}>Settings</Text>
                     </TouchableOpacity>
                 </View>
             </View>

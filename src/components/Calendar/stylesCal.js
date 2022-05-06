@@ -6,7 +6,7 @@ export default StyleSheet.create({
         width: 296,
         height: 310,
         backgroundColor: Colors.addBack,
-        marginTop: 70,
+        marginTop: 40,
         marginRight: 40, 
         borderRadius: 12, 
         // alignItems: 'flex-start',

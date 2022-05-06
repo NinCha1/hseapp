@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { ActivityIndicator } from 'react-native';
 import Calendar from '../../../../../../components/Calendar/Calendar';
 import styles from './styles';
+import Filter from '../../../../../../components/Filter/Filter';
 
 
 function renameKey( obj, oldKey, newKey) {
@@ -13,6 +14,7 @@ function renameKey( obj, oldKey, newKey) {
 }
 
 export const Assigments = () => {
+
     const [data, setData] = useState([]);
     const [isLoading, setLoading] = useState(true);
 
@@ -67,7 +69,10 @@ export const Assigments = () => {
                     keyExtractor={(item, index) => index}
                 />
             )}
-            <Calendar style={styles.components}/>
+            <View>
+                <Filter/>
+                <Calendar style={styles.components}/>
+            </View>
         </SafeAreaView>
     )
 }

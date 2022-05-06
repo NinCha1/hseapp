@@ -19,7 +19,7 @@ export default class Main extends Component {
     }
 
     navigateToLogin = () => {
-        this.props.navigation.navigate('Login');
+        this.props.navigation.goBack();
     }
 
     render() {

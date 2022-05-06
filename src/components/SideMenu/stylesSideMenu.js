@@ -35,6 +35,7 @@ export default StyleSheet.create({
     },
     icon: {
         marginLeft: 5,
+        marginRight: 17,
     },
     upper: {
         height: '85%',
@@ -44,8 +45,12 @@ export default StyleSheet.create({
         // width: '100%',
         height: '100%',
         justifyContent: 'flex-start',
+
     },
     logout: {
+        marginTop: 15,
         marginLeft: 25,
+        flexDirection: 'row',
+        alignItems: 'center'
     }
 })
