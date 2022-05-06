@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 import {View, Text, Button} from 'react-native';
+import Colors from '../../common/Colors';
+import styles from './stylesCal';
 
 export default class Calendar extends Component {
     months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     weekDays = [
-        "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun" 
+        "Mo", "Tu", "We", "Th", "Fr", "Sa", "Su" 
     ];
     nDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
@@ -52,23 +54,40 @@ export default class Calendar extends Component {
             }
         });
     };
+
+    changeMonth = (n) => {
+        this.setState(() => {
+            this.state.activeDate.setMonth(
+                this.state.activeDate.getMonth() + n
+            )
+            return this.state
+        });
+    }
     render() {
         var matrix = this.generateMatrix();
         var rows = [];
         rows = matrix.map((row, rowIndex) => {
             var rowItems = row.map((item, colIndex) => {
                 return (
-                    <Text style={{
-                        flex: 1,
-                        height: 18,
-                        textAlign: 'center',
-                        backgroundColor: rowIndex === 0 ? '#ddd' : '#fff',
-                        color : colIndex == 0 ? '#a00' : '#000',
-                        fontWeight: item == this.state.activeDate.getDate() ? 'bold' : '',
-                    }} 
-                    onPress={() => this._onPress(item)}>
-                        {item != 1 ? item : ''}
-                    </Text>
+                    <View style={{width:26, height: 26, justifyContent: 'center', flexDirection: 'column', borderRadius: 8, display: 'flex', backgroundColor: item == this.state.activeDate.getDate() ? Colors.primary : Colors.addBack, alignItems: 'center'}}>
+                        <Text style={{
+                            flex: 1,
+                            height: 19,
+                            width: 16,
+                            textAlign: 'center',
+                            color : item == this.state.activeDate.getDate() ? Colors.background : Colors.text_prim,
+                            fontWeight: '500',
+                            // backgroundColor: item == this.state.activeDate.getDate() ? Colors.primary : Colors.addBack,
+                            fontFamily: 'Inter',
+                            lineHeight: 19,
+                            display: 'flex',
+                            fontSize: 13,
+                            fontStyle: 'normal',
+                         }} 
+                     onPress={() => this._onPress(item)}>
+                            {item != -1 ? item : ''}
+                        </Text>
+                    </View>
                 );
                 });
                 return (
@@ -78,16 +97,20 @@ export default class Calendar extends Component {
                 );
             });
         return(
-            <View style={{width: '25%', height: '30%'}}>
-                <Text style={{
-                    fontWeight: 'bold',
-                    fontSize: 18,
-                    textAlign: 'center',
-                 }}>
-                    {this.months[this.state.activeDate.getMonth()]} &nbsp;
-                    {this.state.activeDate.getFullYear()}
-                </Text>
-                {rows}
+            <View style={styles.container}>
+                <View style={styles.header}>
+                    <Button title="Back"
+                        onPress={() => this.changeMonth(-1)}/>
+                    <Text style={styles.month}>
+                        {this.months[this.state.activeDate.getMonth()]} &nbsp;
+                        {this.state.activeDate.getFullYear()}
+                    </Text>
+                    <Button title="Next"
+                        onPress={() => this.changeMonth(+1)}/>
+                </View>
+                <View style={styles.body}>
+                    {rows}
+                </View>
             </View>
         )
     }
