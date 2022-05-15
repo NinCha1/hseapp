@@ -39,7 +39,7 @@ const shadow = {
       // Animating the active index based current index
       Animated.spring(tabTranslate, {
         toValue: props?.currentIndex * translateValue,
-        stiffness: 180,
+        stiffness: 90,
         damping: 20,
         mass: 1,
         useNativeDriver: true
@@ -85,7 +85,7 @@ const shadow = {
                 key={index}
                 style={[styles.textWrapper]}
                 onPress={() => memoizedTabPressCallback(index)}
-                activeOpacity={0.7} >
+                activeOpacity={0.4} >
                 <Text numberOfLines={1} style={[styles.textStyles, { color: props?.textColor }, isCurrentIndex && { color: props?.activeTextColor }]}>{tab}</Text>
               </TouchableOpacity>
             )
@@ -133,11 +133,11 @@ const shadow = {
     tabs: [],
     onChange: () => { },
     currentIndex: 0,
-    segmentedControlBackgroundColor: '#E5E5EA',
-    activeSegmentBackgroundColor: 'white',
+    segmentedControlBackgroundColor: '#FFFFFF',
+    activeSegmentBackgroundColor: '#FFFFFF',
     textColor: 'black',
-    activeTextColor: 'black',
-    paddingVertical: 12
+    activeTextColor: '#1F4EC7',
+    paddingVertical: 5
   }
   
 export default SegmentedControl;

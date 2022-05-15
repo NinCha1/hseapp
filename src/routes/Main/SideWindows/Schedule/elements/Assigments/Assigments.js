@@ -20,19 +20,13 @@ export const Assigments = () => {
     const [data, setData] = useState([]);
     const [isLoading, setLoading] = useState(true);
     const [filter, setFilter] = useState('all');
-    const [filterData, setfilterData] = useState([]);
+    // const [filterData, setfilterData] = useState([]);
     // const [filteredData, setfilteredData] = useState([]);
 
     const HandleFilter = (value) => {
         setFilter(value)
     }
 
-    const filtering = (data) => {
-        const filterData = data;
-        filterData.map((element) => {
-        element.data = element.data.filter(item => {return item.type == filter.filter})
-        
-    })}
 
     
     const Item = ({item}) => (
@@ -64,7 +58,6 @@ export const Assigments = () => {
             const updatedJson = JSON.stringify(arr);
 
             setData(arr);
-            // setfilterData(arr);
         } catch(error) {
             console.error(error);
         } finally {
@@ -76,7 +69,15 @@ export const Assigments = () => {
         getSchedule();
     }, []);
 
-    const allSelected = (filter === 'all');
+    const filtering = (data) => {
+        const filterData = data;
+        filterData.map((element) => {
+        element.data = element.data.filter(item => {return item.type == filter.filter})
+        
+        // setfilterData(filterData)
+    })}
+
+    const allSelected = (filter == 'all');
     const whichData = allSelected ? data : filtering(data)
     console.log(whichData)
 

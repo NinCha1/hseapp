@@ -3,62 +3,64 @@ import Colors from '../../common/Colors';
 
 export default StyleSheet.create({
     container: {
-        flex: 1,
+        // flex: 1,
         backgroundColor: Colors.loginBack,
         width: '100%',
+        height: '100%',
+        alignItems: 'center',
+        position: 'absolute',
+        flexDirection: 'column'
     },
     loginForm: {
-        height: 512, //50%
-        width: 426,
+        // flex: 1,
+        height: 465, //50%
+        width: 430,
         backgroundColor: '#fff',
         borderRadius: 16,
         flexDirection: 'column',
-        alignItems: 'flex-start',
+        alignItems: 'center',
         display: 'flex',
-        // left: 0,
-        // top: 0,
-        alignSelf: 'stretch',
-        marginTop: 75,
-        // marginBottom: '38.3%',
-        marginLeft: '33.3%',
+        alignSelf: 'center',
+        marginTop: 30,
         justifyContent: 'center', 
     },
     header: {
         fontFamily: 'Inter',
         fontStyle: 'normal',
         fontWeight: '700',
-        fontSize: 25,
-        alignItems: 'center',
+        fontSize: 28,
+        // alignSelf: 'center',
         color: '#1F4EC7',
-        width: 300, //30%
-        height: 46, //9%
-        marginLeft:'30%',
+        // width: 300, //30%
+        // height: 34, //9%
+        // marginLeft:'30%',
         justifyContent: 'center',
         },
     loginInput: {
         backgroundColor: '#F5F5F5',
-        position: 'static',
+        // position: 'static',
         width: 400,
-        height: 46,
+        height: 48,
         alignItems: 'center',
         flexDirection: 'row',
         borderRadius: 12,
-        marginTop: 32,
-        marginVertical: '3%',
-        paddinVertical: 12,
+        marginTop: 15,
+        // marginVertical: '3%',
+        paddingVertical: 12,
         color: 'black',
         alignItems: 'center',
         fontFamily: 'Inter',
         fontStyle: 'normal',
         fontSize: 16, 
         lineHeight: 16, 
-        order: 0,
+        // order: 0,
     },
     btn: {
         width: 400,
         height: 48,
         marginVertical: 10,
         flexDirection: 'row',
-        left: 10,
+        // backgroundColor: 'red'
+        // left: 10,
     }
 })
