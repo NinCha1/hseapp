@@ -9,10 +9,10 @@ export default class Filter extends Component {
 
         this.state = {
             subjCategory: [
-                {id: '1', text: 'All'},
-                {id: '2', text: 'Homework'},
-                {id: '3', text: 'Midterm'},
-                {id: '4', text: 'Exam'}
+                {id: 'all', text: 'All'},
+                {id: 'hw', text: 'Homework'},
+                {id: 'cw', text: 'Midterm'},
+                {id: 'ex', text: 'Exam'}
             ],
             selectedItem: null,
         }
@@ -20,6 +20,7 @@ export default class Filter extends Component {
 
     _choosen(selectedItem) {
         this.setState({selectedItem});
+        this.props.HandleFilter({filter: selectedItem});
     }
 
     _renderList = ({item}) => {

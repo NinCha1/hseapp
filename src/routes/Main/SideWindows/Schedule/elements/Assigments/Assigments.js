@@ -13,11 +13,28 @@ function renameKey( obj, oldKey, newKey) {
     delete obj[oldKey];
 }
 
-export const Assigments = () => {
 
+
+export const Assigments = () => {
+    
     const [data, setData] = useState([]);
     const [isLoading, setLoading] = useState(true);
+    const [filter, setFilter] = useState('all');
+    const [filterData, setfilterData] = useState([]);
+    // const [filteredData, setfilteredData] = useState([]);
 
+    const HandleFilter = (value) => {
+        setFilter(value)
+    }
+
+    const filtering = (data) => {
+        const filterData = data;
+        filterData.map((element) => {
+        element.data = element.data.filter(item => {return item.type == filter.filter})
+        
+    })}
+
+    
     const Item = ({item}) => (
         <View style={styles.item}>
             <View style={styles.delimeter}/>
@@ -45,7 +62,9 @@ export const Assigments = () => {
                 renameKey(element, 'assignments', 'data')
             });
             const updatedJson = JSON.stringify(arr);
+
             setData(arr);
+            // setfilterData(arr);
         } catch(error) {
             console.error(error);
         } finally {
@@ -56,6 +75,10 @@ export const Assigments = () => {
     useEffect(() => {
         getSchedule();
     }, []);
+
+    const allSelected = (filter === 'all');
+    const whichData = allSelected ? data : filtering(data)
+    console.log(whichData)
 
     return (
         <SafeAreaView style={styles.container}>
@@ -70,7 +93,7 @@ export const Assigments = () => {
                 />
             )}
             <View>
-                <Filter/>
+                <Filter HandleFilter={HandleFilter}/>
                 <Calendar style={styles.components}/>
             </View>
         </SafeAreaView>
