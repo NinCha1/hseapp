@@ -19,15 +19,26 @@ export const Assigments = () => {
     const [data, setData] = useState([]);
     const [isLoading, setLoading] = useState(true);
     const [filter, setFilter] = useState('all');
-    // const [filterData, setfilterData] = useState([]);
-    // const [filteredData, setfilteredData] = useState(data);
+    const [filterData, setfilterData] = useState([]);
 
+    useEffect(() => {
+        getSchedule();
+    }, []);
+
+    useEffect(() => {
+        filterDeadlines()
+    }, [data, filter]);
+
+    function filterDeadlines ()  {
+        const newData = JSON.parse(JSON.stringify(data));
+        filtering(newData)
+    }
+     
     const HandleFilter = (value) => {
+        console.log(value)
         setFilter(value)
     }
 
-
-    
     const Item = ({item}) => (
         <View style={styles.item}>
             <View style={styles.delimeter}/>
@@ -64,48 +75,26 @@ export const Assigments = () => {
         }
     }
 
-    useEffect(() => {
-        getSchedule();
-        filtering(newData);
-    }, []);
 
     function filtering (data) {
-        data.map((element) => {
-        element.data = element.data.filter(item => {return item.type == filter.filter})
-        console.log(data)
-        return  JSON.parse(JSON.stringify(data));
-    })}
-
-
-    const newData = JSON.parse(JSON.stringify(data));
-    function whichData1 (filter) {
-        switch(filter.filter) {
-            case 'all' : return JSON.parse(JSON.stringify(data));
-            case 'cw' :  return filtering(newData);
-            case 'hw' :  return filtering(newData);
-            case 'ex' :  return filtering(newData);
+        if (filter.filter == 'all') {
+            setfilterData(data)
+        } else {
+            data.map((element) => {
+                element.data = element.data.filter(item => {
+                    return item.type == filter.filter
+                })
+            })
+            console.log(filter)
+            setfilterData(data)
         }
     }
-
-    // if (filter. == )
-    filtering(newData)
-    // console.log(whichData('all'))
-    const allSelected = (filter.filter == 'all');
-    // console.log(allSelected)
-    // var returnValue = this.filtering(newData)
-    // console.log(returnValue)
-    const whichData = allSelected ? JSON.parse(JSON.stringify(data)) : JSON.parse(JSON.stringify(data))
-    // console.log(whichData('all'))
-    // const check = {filtering}
-    // console.log(whichData1('all'))
-    // const newData = data
-    // filtering(newData)
 
     return (
         <SafeAreaView style={styles.container}>
             {isLoading ? <ActivityIndicator/> : (
                  <SectionList
-                    sections={whichData}
+                    sections={filterData} 
                     renderItem={Item}
                     renderSectionHeader={({section}) => (
                         <Text style={styles.header}>{section.title}</Text>

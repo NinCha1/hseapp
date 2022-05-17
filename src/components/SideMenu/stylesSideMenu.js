@@ -1,5 +1,19 @@
 import {StyleSheet} from 'react-native';
 import Colors from '../../common/Colors';
+// import "inter-ui/inter.css";
+
+import {
+    useFonts,
+    Inter_100Thin,
+    Inter_200ExtraLight,
+    Inter_300Light,
+    Inter_400Regular,
+    Inter_500Medium,
+    Inter_600SemiBold,
+    Inter_700Bold,
+    Inter_800ExtraBold,
+    Inter_900Black,
+  } from '@expo-google-fonts/inter';
 
 export default StyleSheet.create({
     tab: {
@@ -9,39 +23,36 @@ export default StyleSheet.create({
         direction: 'flex',
         justifyContent: 'space-between',
     },
-    containerSide: {
-        width: '15%',
-        height: 48,
-    },
+
     button: {
-        marginTop: 15,
+        marginTop: 10,
         width: '90%',
-        height: '8%',
-        minHeight: 20,
+        height: '7%',
+        minHeight: 30,
         minWidth: 100,
         left: 0,
         top: 0,
         borderRadius: 8,
-        backgroundColor: Colors.loginBack,
-        // padding: (12, 16, 12, 16),
         radius: 8,
         alignItems: 'center',
-        flexDirection: 'row'
+        flexDirection: 'row',
+        alignSelf: 'center'
     },
     textButton: {
         marginLeft: '2%',
-        fontFamily: 'Inter',
+        // fontFamily: Inter_100Thin,
         fontStyle: 'normal',
         fontSize: 16,
         color: 'rgba(0, 0, 0, 0.5)',
     },
     icon: {
-        marginLeft: '4%',
+        marginLeft: 8,
         marginRight: 17,
     },
     upper: {
-        height: '85%',
+        height: '80%',
         alignItems: 'center',
+        marginTop: 20,
     },
     bottom: {
         // width: '100%',

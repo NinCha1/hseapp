@@ -14,7 +14,7 @@ export default class Filter extends Component {
                 {id: 'cw', text: 'Midterm'},
                 {id: 'ex', text: 'Exam'}
             ],
-            selectedItem: null,
+            selectedItem: {id: 'all', text: 'All'},
         }
     }
 
@@ -25,6 +25,7 @@ export default class Filter extends Component {
 
     _renderList = ({item}) => {
         const isSelected = (this.state.selectedItem === item.id);
+        // console.log(selectedItem)
         const backgroundColor = isSelected ? 'rgba(31, 78, 199, 0.15)' : Colors.addBack;
         const fontWeight = isSelected ? "bold" : "normal";
         const showNext = isSelected ? "block" : "none";
