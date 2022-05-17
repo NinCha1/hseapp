@@ -68,7 +68,9 @@ export const Timetable = () => {
                     keyExtractor={(item, index) => index}
                 />
             )}
-            <Calendar style={styles.components}/>
+            <View style={{minWidth: '30%'}}>
+                <Calendar style={styles.components}/>
+            </View>
         </SafeAreaView>
     )
 }

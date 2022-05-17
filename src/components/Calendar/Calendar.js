@@ -79,7 +79,7 @@ export default class Calendar extends Component {
                             fontWeight: '500',
                             // backgroundColor: item == this.state.activeDate.getDate() ? Colors.primary : Colors.addBack,
                             fontFamily: 'Inter',
-                            lineHeight: 19,
+                            lineHeight: 23,
                             display: 'flex',
                             fontSize: 13,
                             fontStyle: 'normal',

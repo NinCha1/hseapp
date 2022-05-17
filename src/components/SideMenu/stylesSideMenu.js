@@ -16,7 +16,9 @@ export default StyleSheet.create({
     button: {
         marginTop: 15,
         width: '90%',
-        height: '5%',
+        height: '8%',
+        minHeight: 20,
+        minWidth: 100,
         left: 0,
         top: 0,
         borderRadius: 8,
@@ -27,14 +29,14 @@ export default StyleSheet.create({
         flexDirection: 'row'
     },
     textButton: {
-        marginLeft: 6,
+        marginLeft: '2%',
         fontFamily: 'Inter',
         fontStyle: 'normal',
         fontSize: 16,
         color: 'rgba(0, 0, 0, 0.5)',
     },
     icon: {
-        marginLeft: 5,
+        marginLeft: '4%',
         marginRight: 17,
     },
     upper: {
