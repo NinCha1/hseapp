@@ -12,8 +12,7 @@ export default StyleSheet.create({
         flexDirection: 'row',
         margin: (24, 0),
         width: 242,
-        height: 79,
-        // opacity: 0.5,
+        height: 95,
       },
       header: {
         fontSize: 16,
@@ -22,6 +21,10 @@ export default StyleSheet.create({
         fontWeight: '500',
         margin: (0, 10),
         lineHeight: 19,
+        marginTop: 40,
+      },
+      content: {
+        justifyContent: 'space-between',
       },
       
       delimeter: {
@@ -29,7 +32,8 @@ export default StyleSheet.create({
           height: '100%',
         //   border: '2px solid #1F4EC7',
           boxSizing: 'border-box',
-          margin: (0, 12, 0, 8),
+          marginLeft: 8,
+          marginRight: 12,
           backgroundColor: Colors.text_tret,
       },
 
@@ -49,17 +53,18 @@ export default StyleSheet.create({
       },
       infoView: {
           borderRadius: 4,
-          alignItems: 'flex-start',
+          alignItems: 'center',
           justifyContent: 'center',
-          padding: (0, 2),
+          // padding: (2, 2),
         //   width: 78,
-        //   height: 29,
+          height: 29,
       },
       deadlineTime: {
          fontFamily: 'Inter',
          fontStyle: 'normal',
          fontSize: 14,
          color: Colors.text_prim,
+         padding: 8,
         //  margin: (0, 8),
       },
       submissionTIme: {
@@ -67,6 +72,7 @@ export default StyleSheet.create({
         fontStyle: 'normal',
         fontSize: 14,
         color: Colors.text_prim,
+        padding: 8,
       },
       infoCont: {
           flexDirection: 'row',

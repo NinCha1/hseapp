@@ -42,12 +42,16 @@ export const Assigments = () => {
     const Item = ({item}) => (
         <View style={styles.item}>
             <View style={styles.delimeter}/>
-            <View>
+            <View style={styles.content}>
                 <Text style={styles.subjectName}>{item.subjectName}</Text>
                 <Text style={styles.assigmentName}>{item.assigmentName}</Text>
                 <View style={styles.infoCont}>
-                    <View style={[styles.infoView, {backgroundColor: '#F5F5F5'}]}><Text style={styles.deadlineTime}>{item.deadlineTime}</Text></View>
-                    <View style={[styles.infoView, {backgroundColor: '#F5F5F5', marginLeft: 10}]}><Text style={styles.submissionTIme}>{item.sumbisionTIme}</Text></View>
+                    <View style={[styles.infoView, {backgroundColor: '#F5F5F5'}]}>
+                        <Text style={styles.deadlineTime}>{item.deadlineTime}</Text>
+                    </View>
+                    <View style={[styles.infoView, {backgroundColor: '#F5F5F5', marginLeft: 10}]}>
+                        <Text style={styles.submissionTIme}>{item.sumbisionTIme}</Text>
+                    </View>
                 </View>
             </View>
         </View>
@@ -94,6 +98,7 @@ export const Assigments = () => {
         <SafeAreaView style={styles.container}>
             {isLoading ? <ActivityIndicator/> : (
                  <SectionList
+                    style={{marginLeft: 30}}
                     sections={filterData} 
                     renderItem={Item}
                     renderSectionHeader={({section}) => (

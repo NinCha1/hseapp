@@ -11,7 +11,7 @@ export default StyleSheet.create({
         padding: 10,
         flexDirection: 'row',
         margin: (24, 0),
-        // opacity: 0.5,
+        height: 105,
       },
       header: {
         fontSize: 16,
@@ -20,12 +20,14 @@ export default StyleSheet.create({
         fontWeight: '500',
         margin: (0, 10),
         lineHeight: 19,
+        marginTop: 40,
       },
       timeCont: {
           flexDirection: 'column',
           justifyContent: 'space-between',
           alignItems: 'flex-start',
           padding: 0,
+          width: 40,
       },
       timeStart: {
           margin: (0, 0),
@@ -47,18 +49,24 @@ export default StyleSheet.create({
       },
       delimeter: {
           width: 2,
-        //   height: '100%',
+          height: '100%',
         //   border: '2px solid #1F4EC7',
           boxSizing: 'border-box',
-          margin: (0, 12, 0, 8),
-          backgroundColor: Colors.text_tret,
+        marginLeft: 8,
+        marginRight: 12,
+        backgroundColor: Colors.text_tret,
+
+      },
+      icon: {
+          padding: 0,
+          margin : 0,
       },
       infoCont: {
           flexDirection: 'column',
           alignItems: 'flex-start',
-          padding: 0,
           boxSizing: 'border-box',
-          margin: 0,
+          height: '100%',
+          justifyContent: 'space-between'
       },
       type: {
           color: Colors.primary,
@@ -68,7 +76,7 @@ export default StyleSheet.create({
           fontWeight: '500',
           fontSize: 12,
           lineHeight: 15,
-          margin: (8, 0),
+          marginBottom: 5,
       },
       subjectName: {
           color: Colors.text_prim,
@@ -77,17 +85,17 @@ export default StyleSheet.create({
           fontWeight: '500',
           lineHeight: 19,
           fontStyle: 'normal',
-          margin: (8, 0),
+          marginBottom: 5,
       },
       visitType: {
           color: Colors.text_second,
-          marginBottom: 8,
+          marginBottom: 5,
           fontWeight: '400',
           fontSize: 14,
           lineHeight: 21,
           fontStyle: 'normal',
           fontFamily: 'Inter',
-
+          marginBottom: 5,
       },
       components: {
           width: '20%',

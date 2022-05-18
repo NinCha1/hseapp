@@ -25,9 +25,9 @@ export default StyleSheet.create({
     },
 
     button: {
-        marginTop: 10,
+        // marginTop: 7,
         width: '90%',
-        height: '7%',
+        height: 40,
         minHeight: 30,
         minWidth: 100,
         left: 0,
