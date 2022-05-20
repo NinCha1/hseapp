@@ -1,5 +1,6 @@
 import {StyleSheet} from 'react-native';
 import Colors from '../../common/Colors';
+import { Fonts } from '../../common/Fonts';
 
 export default StyleSheet.create({
     container: {
@@ -9,31 +10,36 @@ export default StyleSheet.create({
         height: '100%',
         alignItems: 'center',
         position: 'absolute',
-        flexDirection: 'column'
+        flexDirection: 'column',
+        // padding: (40, 40, 28),
     },
     loginForm: {
         // flex: 1,
-        height: 465, //50%
-        width: 430,
+        height: 512, //50%
+        width: 480,
         backgroundColor: '#fff',
         borderRadius: 16,
         flexDirection: 'column',
         alignItems: 'center',
         display: 'flex',
         alignSelf: 'center',
-        marginTop: 30,
+        marginTop: '5%',
         justifyContent: 'center', 
+        padding: (40, 40, 28),
+        gap: 40,
+    },
+    shadowProp : {
+        shadowColor: 'rgba(0, 0, 0, 0.12)',
+        shadowOffset: {width: -24, height: 36},
+        shadowOpacity: 0.5,
+        shadowRadius: 3,
     },
     header: {
-        fontFamily: 'Inter',
+        fontFamily: Fonts.Inter500,
         fontStyle: 'normal',
         fontWeight: '700',
         fontSize: 28,
-        // alignSelf: 'center',
         color: '#1F4EC7',
-        // width: 300, //30%
-        // height: 34, //9%
-        // marginLeft:'30%',
         justifyContent: 'center',
         },
     loginInput: {
@@ -41,18 +47,19 @@ export default StyleSheet.create({
         // position: 'static',
         width: 400,
         height: 48,
-        alignItems: 'center',
-        flexDirection: 'row',
+        // alignItems: 'center',
+        justifyContent: 'center',
+        // flexDirection: 'row',
         borderRadius: 12,
-        marginTop: 15,
         // marginVertical: '3%',
-        paddingVertical: 12,
         color: 'black',
-        alignItems: 'center',
-        fontFamily: 'Inter',
+        // alignItems: 'center',
+        fontFamily: Fonts.Inter500,
         fontStyle: 'normal',
         fontSize: 16, 
         lineHeight: 16, 
+        marginTop: 16,
+        padding: 13,
         // order: 0,
     },
     btn: {

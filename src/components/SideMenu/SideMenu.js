@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {View, Text, TouchableOpacity, Image, FlatList, TouchableHighlight} from 'react-native';
-import Courses from '../../routes/Main/SideWindows/Courses/Courses';
-import Grades from '../../routes/Main/SideWindows/Grades/Grades';
-import Schedule from '../../routes/Main/SideWindows/Schedule/Schedule';
+import {Courses} from '../../routes/Main/SideWindows/Courses/Courses';
+import {Grades} from '../../routes/Main/SideWindows/Grades/Grades';
+import {Schedule} from '../../routes/Main/SideWindows/Schedule/Schedule';
 import {navigateToMenu} from '../../routes/Main/Main'
 import styles from './stylesSideMenu';
 import Colors from '../../common/Colors';
@@ -30,7 +30,7 @@ export default class SideMenu extends Component{
     _renderList = ({item}) => {
         const isSelected = (this.state.selectedItem === item.id);
         const backgroundColor = isSelected ? Colors.loginBack : Colors.addBack;
-        const colortext = isSelected ? Colors.primary : Colors.text_prim;
+        const colortext = isSelected ? Colors.primary : Colors.text_second;
         const image = isSelected ? item.imagePress : item.imageOff;
 
         return (
@@ -39,7 +39,9 @@ export default class SideMenu extends Component{
             >
                 <View style={{padding: 2, flexDirection: 'row', width: '100%', justifyContent: 'center'}}>
                     <View style={[styles.button, {backgroundColor}]}>
-                        <Image source={image} style={styles.icon}/>
+                        <View style={styles.icon}>
+                            <Image source={image}/>
+                        </View>
                         <Text style={[styles.textButton,{color: colortext}]}>{item.text}</Text>
                     </View>
                 </View>
@@ -73,11 +75,15 @@ export default class SideMenu extends Component{
                 </View>
                 <View style={styles.bottom}>
                     <TouchableOpacity onPress={this.navigateToMenu} style={styles.logout}>
-                        <Image source={require('../../img/logout.png')} style={styles.icon}/>
+                        <View style={styles.icon}>
+                            <Image source={require('../../img/logout.png')}/>
+                        </View>
                         <Text style={{color: '#C9241A', fontFamily: 'Inter', fontWeight: '500', fontSize: 16, lineHeight: 19}}>Log out</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => {}} style={styles.logout}>
-                         <Image source={require('../../img/Settings.png')} style={styles.icon}/>
+                        <View style={styles.icon}> 
+                            <Image source={require('../../img/Settings.png')}/>
+                        </View>
                          <Text style={{color: Colors.text_second, fontFamily: 'Inter', fontWeight: '500', fontSize: 16, lineHeight: 19}}>Settings</Text>
                     </TouchableOpacity>
                 </View>

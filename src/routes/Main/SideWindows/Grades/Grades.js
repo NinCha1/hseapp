@@ -1,12 +1,11 @@
-import React, {Component} from 'react';
+import React, {Component, useState, useEffect} from 'react';
 import {View, Text} from 'react-native';
 
-export default class Grades extends Component {
-    render() {
-        return (
-            <View>
-                <Text>Grades Page</Text>
-            </View>
-        )
-    }
+
+export const Grades = () => {
+    return (
+        <View>
+            <Text>Grades</Text>
+        </View>
+    )
 }

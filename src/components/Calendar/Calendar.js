@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, Button} from 'react-native';
+import {View, Text, TouchableOpacity, Image} from 'react-native';
 import Colors from '../../common/Colors';
 import styles from './stylesCal';
 
@@ -99,14 +99,16 @@ export default class Calendar extends Component {
         return(
             <View style={styles.container}>
                 <View style={styles.header}>
-                    <Button title="Back"
-                        onPress={() => this.changeMonth(-1)}/>
+                    <TouchableOpacity onPress={() => this.changeMonth(-1)}>
+                        <Image source={require('../../img/leftButton.png')}/>
+                    </TouchableOpacity>
                     <Text style={styles.month}>
                         {this.months[this.state.activeDate.getMonth()]} &nbsp;
                         {this.state.activeDate.getFullYear()}
                     </Text>
-                    <Button title="Next"
-                        onPress={() => this.changeMonth(+1)}/>
+                    <TouchableOpacity onPress={() => this.changeMonth(+1)}>
+                        <Image source={require('../../img/rightButton.png')}/>
+                    </TouchableOpacity>
                 </View>
                 <View style={styles.body}>
                     {rows}

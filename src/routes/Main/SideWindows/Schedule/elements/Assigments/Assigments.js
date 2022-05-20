@@ -6,36 +6,29 @@ import { ActivityIndicator } from 'react-native';
 import Calendar from '../../../../../../components/Calendar/Calendar';
 import styles from './styles';
 import Filter from '../../../../../../components/Filter/Filter';
-
-
-function renameKey( obj, oldKey, newKey) {
-    obj[newKey] = obj[oldKey];
-    delete obj[oldKey];
-}
-
+import scheduleAPI from '../../../../../../API/scheduleAPI';
+import useApi from '../../../../../../hooks/useApi';
 
 export const Assigments = () => {
-    
-    const [data, setData] = useState([]);
-    const [isLoading, setLoading] = useState(true);
+    const getAssigmentsApi = useApi(scheduleAPI.getAssigments, 'day', 'assignments', 'deadlineId');
     const [filter, setFilter] = useState('all');
     const [filterData, setfilterData] = useState([]);
 
     useEffect(() => {
-        getSchedule();
+        getAssigmentsApi.request(1);
     }, []);
 
-    useEffect(() => {
-        filterDeadlines()
-    }, [data, filter]);
+
+    // useEffect(() => {
+    //     filterDeadlines()
+    // }, );
 
     function filterDeadlines ()  {
-        const newData = JSON.parse(JSON.stringify(data));
+        const newData = JSON.parse(JSON.stringify(getAssigmentsApi.data));
         filtering(newData)
     }
      
     const HandleFilter = (value) => {
-        console.log(value)
         setFilter(value)
     }
 
@@ -57,28 +50,6 @@ export const Assigments = () => {
         </View>
     );
 
-    const getSchedule = async () => {
-        try {
-            const response = await fetch('https://my-json-server.typicode.com/SKYMAN44/FAKEJSONSERVER/deadline/1/deadlines');
-            const json = await response.json();
-            for(var i = 0; i < json.length; i++) {
-                delete json[i].deadlineId
-            }
-            const arr = JSON.parse(JSON.stringify(json));
-            arr.forEach(element => {
-                renameKey(element, 'day','title')
-                renameKey(element, 'assignments', 'data')
-            });
-            const updatedJson = JSON.stringify(arr);
-
-            setData(arr);
-        } catch(error) {
-            console.error(error);
-        } finally {
-            setLoading(false);
-        }
-    }
-
 
     function filtering (data) {
         if (filter.filter == 'all') {
@@ -89,17 +60,16 @@ export const Assigments = () => {
                     return item.type == filter.filter
                 })
             })
-            console.log(filter)
             setfilterData(data)
         }
     }
 
     return (
         <SafeAreaView style={styles.container}>
-            {isLoading ? <ActivityIndicator/> : (
+            {getAssigmentsApi.loading ? <ActivityIndicator/> : (
                  <SectionList
                     style={{marginLeft: 30}}
-                    sections={filterData} 
+                    sections={getAssigmentsApi.data} 
                     renderItem={Item}
                     renderSectionHeader={({section}) => (
                         <Text style={styles.header}>{section.title}</Text>

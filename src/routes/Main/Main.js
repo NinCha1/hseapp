@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {View, Text} from 'react-native';
 import SideMenu from '../../components/SideMenu/SideMenu';
 import SideMenuNav from '../../navigation/SideMenuNav';
-import Schedule from './SideWindows/Schedule/Schedule';
+import {Schedule} from './SideWindows/Schedule/Schedule';
 import styles from './stylesMain';
 
 

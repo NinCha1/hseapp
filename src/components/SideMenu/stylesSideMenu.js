@@ -22,11 +22,13 @@ export default StyleSheet.create({
         flexDirection: 'column',
         direction: 'flex',
         justifyContent: 'space-between',
+        padding: (48, 24, 24),
+        height: '100%',
     },
 
     button: {
         // marginTop: 7,
-        width: '90%',
+        width: '100%',
         height: 40,
         minHeight: 30,
         minWidth: 100,
@@ -48,9 +50,11 @@ export default StyleSheet.create({
     icon: {
         marginLeft: 8,
         marginRight: 17,
+        width: 24, 
+        height: 24
     },
     upper: {
-        height: '80%',
+        height: '85%',
         alignItems: 'center',
         marginTop: 20,
     },
@@ -61,9 +65,10 @@ export default StyleSheet.create({
 
     },
     logout: {
-        marginTop: 15,
-        marginLeft: 25,
+        marginLeft: '2%',
         flexDirection: 'row',
-        alignItems: 'center'
+        alignItems: 'flex-start',
+        marginBottom: 8,
+        // alignSelf: 'center'
     }
 })
