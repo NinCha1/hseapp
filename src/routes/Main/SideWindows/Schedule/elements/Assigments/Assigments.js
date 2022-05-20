@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import commonStyles from '../../../../../../common/styles';
-import { View, SectionList, StyleSheet, Text, StatusBar, SafeAreaView } from 'react-native';
+import { View, SectionList, Text, SafeAreaView } from 'react-native';
 import { useEffect, useState } from 'react';
 import { ActivityIndicator } from 'react-native';
 import Calendar from '../../../../../../components/Calendar/Calendar';
@@ -18,10 +18,9 @@ export const Assigments = () => {
         getAssigmentsApi.request(1);
     }, []);
 
-
-    // useEffect(() => {
-    //     filterDeadlines()
-    // }, );
+    useEffect(() => {
+        filterDeadlines()
+    }, [filter]);
 
     function filterDeadlines ()  {
         const newData = JSON.parse(JSON.stringify(getAssigmentsApi.data));
@@ -67,20 +66,22 @@ export const Assigments = () => {
     return (
         <SafeAreaView style={styles.container}>
             {getAssigmentsApi.loading ? <ActivityIndicator/> : (
-                 <SectionList
-                    style={{marginLeft: 30}}
-                    sections={getAssigmentsApi.data} 
-                    renderItem={Item}
-                    renderSectionHeader={({section}) => (
-                        <Text style={styles.header}>{section.title}</Text>
-                    )} 
-                    keyExtractor={(item, index) => index}
-                />
+                <View style={styles.container}>
+                    <SectionList
+                        style={{marginLeft: 30}}
+                        sections={filterData} 
+                        renderItem={Item}
+                        renderSectionHeader={({section}) => (
+                            <Text style={styles.header}>{section.title}</Text>
+                        )} 
+                        keyExtractor={(item, index) => index}
+                    />
+                    <View>
+                        <Filter HandleFilter={HandleFilter}/>
+                        <Calendar style={styles.components}/>
+                    </View>
+                </View>
             )}
-            <View>
-                <Filter HandleFilter={HandleFilter}/>
-                <Calendar style={styles.components}/>
-            </View>
         </SafeAreaView>
     )
 }
