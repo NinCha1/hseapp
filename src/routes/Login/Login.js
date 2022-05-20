@@ -34,7 +34,7 @@ export default class Login extends Component{
         return(
             <View style={commonStyles.container}>
                 <View style={styles.container}>
-                    <View style={styles.loginForm}>
+                    <View style={[styles.loginForm, styles.shadowProp]}>
 
                         <Text style={styles.header}>HSE Connect</Text>
                         <SegmentedControlTab values={['Student', 'Assistant', 'Teacher']} 
@@ -43,9 +43,9 @@ export default class Login extends Component{
                         tabStyle={{backgroundColor: '#FFFFFF', borderColor: 'white'}}
                         tabsContainerStyle={{marginVertical: 10, padding: 7, width: 400, height: 50}}
                         tabTextStyle={{fontFamily: 'Inter', fontStyle: 'normal', fontSize: 15, color: 'black'}}
-                        activeTabStyle={{backgroundColor: '#FFFFFF'}}
+                        activeTabStyle={{backgroundColor: '#FFFFFF', borderEndColor: 'red'}}
                         activeTabTextStyle={{fontFamily: 'Inter', fontStyle: 'normal', fontSize: 15, color: '#1F4EC7'}}
-                        tabBadgeContainterStyle={{color: 'white', borderRadius: 8}}
+                        // tabBadgeContainterStyle={{color: 'red', borderRadius: 8}}
                         />
                         <TextInput style={styles.loginInput} placeholder="Email" placeholderTextColor = "rgba(0, 0, 0, 0.5)"/>
                         <TextInput style={styles.loginInput} placeholder="Password" placeholderTextColor = "rgba(0, 0, 0, 0.5)"/>
