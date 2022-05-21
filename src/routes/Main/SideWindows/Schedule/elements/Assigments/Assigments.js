@@ -9,7 +9,20 @@ import Filter from '../../../../../../components/Filter/Filter';
 import scheduleAPI from '../../../../../../API/scheduleAPI';
 import useApi from '../../../../../../hooks/useApi';
 
+
+
 export const Assigments = () => {
+
+    const filters = {
+        subjCategory: [
+            {id: 'all', text: 'All'},
+            {id: 'hw', text: 'Homework'},
+            {id: 'cw', text: 'Midterm'},
+            {id: 'ex', text: 'Exam'},
+        ],
+        selectedItem: {id: 'all', text: 'All'},
+    }
+
     const getAssigmentsApi = useApi(scheduleAPI.getAssigments, 'day', 'assignments', 'deadlineId');
     const [filter, setFilter] = useState('all');
     const [filterData, setfilterData] = useState([]);
@@ -19,7 +32,7 @@ export const Assigments = () => {
     }, []);
 
     useEffect(() => {
-        filterDeadlines()
+        filterDeadlines();
     }, [filter]);
 
     function filterDeadlines ()  {
@@ -77,7 +90,7 @@ export const Assigments = () => {
                         keyExtractor={(item, index) => index}
                     />
                     <View>
-                        <Filter HandleFilter={HandleFilter}/>
+                        <Filter HandleFilter={HandleFilter} filter={filters}/>
                         <Calendar style={styles.components}/>
                     </View>
                 </View>

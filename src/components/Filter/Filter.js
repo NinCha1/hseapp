@@ -6,16 +6,8 @@ import styles from '../Filter/styles';
 export default class Filter extends Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            subjCategory: [
-                {id: 'all', text: 'All'},
-                {id: 'hw', text: 'Homework'},
-                {id: 'cw', text: 'Midterm'},
-                {id: 'ex', text: 'Exam'}
-            ],
-            selectedItem: {id: 'all', text: 'All'},
-        }
+        this.state = this.props.filter
+        
     }
 
     _choosen(selectedItem) {
@@ -45,13 +37,14 @@ export default class Filter extends Component {
         )
     }
     render() {
+        console.log(this.state)
         return (
             <View style={styles.container}>
                 <FlatList
                     style={{marginTop: 0, width: '100%'}}
                     data={this.state.subjCategory}
                     renderItem={this._renderList}
-                    keyExtractor={(item, index) => item}
+                    keyExtractor={(item, index) => item.id}
                 />
             </View>
         )

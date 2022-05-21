@@ -10,9 +10,7 @@ export const Schedule = () => {
         return (
             <Tab.Navigator
             tabBarOptions={styles.tab}>
-                <Tab.Screen name="Timetable" component={Timetable}
-                options={{
-                }}/>
+                <Tab.Screen name="Timetable" component={Timetable}/>
                 <Tab.Screen name="Assigments" component={Assigments}/>
             </Tab.Navigator>
         )
