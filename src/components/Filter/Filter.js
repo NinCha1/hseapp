@@ -7,7 +7,6 @@ export default class Filter extends Component {
     constructor(props) {
         super(props);
         this.state = this.props.filter
-        
     }
 
     _choosen(selectedItem) {
@@ -37,7 +36,6 @@ export default class Filter extends Component {
         )
     }
     render() {
-        console.log(this.state)
         return (
             <View style={styles.container}>
                 <FlatList
