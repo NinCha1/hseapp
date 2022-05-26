@@ -1,5 +1,5 @@
 import { element } from 'prop-types';
-import React, {Component, useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Text, ScrollView, TextInput, SafeAreaView, FlatList, Image} from 'react-native';
 import Filter from '../../../../components/Filter/Filter';
 
@@ -46,11 +46,22 @@ export const Courses = () => {
     }
 
     const [filter, setFilter] = useState('');
+    const [filterData, setfilterData] = useState([]);
 
     const HandleFilter = (value) => {
         setFilter(value)
-
     }
+
+    useEffect(() => {
+        filterCourses();
+    }, [filter]);
+
+    function filterCourses () {
+        const newData = JSON.parse(JSON.stringify(DATA));
+        filtering(newData)
+    }
+
+
 
     const Item = ({item}) => (
         <View>
@@ -82,6 +93,14 @@ export const Courses = () => {
         </View>
     )
 
+    function filtering (data) {
+        data = data.filter((item) => {
+            return item.id === filter.filter
+        })
+        setfilterData(data)
+    }
+
+    console.log(filterData)
         return (
             <View>
                 <View style={{height: 106, justifyContent: 'flex-end', flexDirection: 'column',width: '100%'}}>
@@ -91,7 +110,7 @@ export const Courses = () => {
 
                     <View style={{width: 700, padding: 40}}>
                         <FlatList
-                        data={DATA}
+                        data={filterData}
                         ListHeaderComponent={
                             <View>
                                 <TextInput placeholder="Search" placeholderTextColor = "rgba(0, 0, 0, 0.5)" style={{height: 48, backgroundColor: '#F5F5F5', borderRadius: 12, padding: (12, 16), alignItems: 'center'}}/>
