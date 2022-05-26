@@ -30,7 +30,7 @@ const types = [
   
   
 export const Grades = () => {
-    const [selected, setSelected] = useState(undefined);
+    const [selected1, setSelected1] = useState(undefined);
 
     const filters = {
         subjCategory: [
@@ -41,7 +41,7 @@ export const Grades = () => {
             {id: 'db', text: 'Databases'},
             {id: 'ml1', text: 'Machine Learning 1'},
         ],
-        selectedItem: {id: null, text: null},
+        selectedItem: 'la',
     }
 
     const [filter, setFilter] = useState('');
@@ -52,30 +52,30 @@ export const Grades = () => {
       
 
     const Item = ({ item }) => (
-        <View style={{flexDirection: 'row', width: 680, height: 45}}>
+        <View style={{flexDirection: 'row', width: 640, height: 45}}>
             <View style={{ width: 160, justifyContent:  'center', alignItems:  'flex-start', padding: 5}}>
                 <Text style={{color: 'black'}}>{item.name}</Text>
             </View>
 
-            <View style={{backgroundColor: 'gray', width: 1, height:45,}}/>
+            <View style={{backgroundColor: 'rgba(0, 0, 0, 0.08)', width: 1, height:45,}}/>
 
             <View style={{ width: 160, justifyContent:  'center', alignItems:   'flex-start', padding: 5}}>
                 <Text style={{color: 'black'}}>{item.date}</Text>
             </View>
 
-            <View style={{ backgroundColor: 'gray', width: 1, height:45,}}/>
+            <View style={{ backgroundColor: 'rgba(0, 0, 0, 0.08)', width: 1, height:45,}}/>
 
             <View style={{ width: 80, justifyContent:  'center', alignItems:  'flex-start', padding: 5}}>
                 <Text style={{color: 'black'}}>{item.grade}</Text>
             </View>
 
-            <View style={{ backgroundColor: 'gray', width: 1, height:45,}}/>
+            <View style={{ backgroundColor: 'rgba(0, 0, 0, 0.08)', width: 1, height:45,}}/>
 
             <View style={{ width: 160, justifyContent:  'center', alignItems:   'flex-start', padding: 5}}>
                 <Text style={{color: 'black'}}>{item.sender}</Text>
             </View>
 
-            <View style={{ backgroundColor: 'gray', width: 1, height:45,}}/>
+            <View style={{ backgroundColor: 'rgba(0, 0, 0, 0.08)', width: 1, height:45,}}/>
 
             <View style={{ width: 80, justifyContent:  'center', alignItems:  'flex-start', padding: 5}}>
                 <Image source={require(fileICON)}/>
@@ -87,7 +87,7 @@ export const Grades = () => {
     const renderSeparator = () => (
         <View
           style={{
-            backgroundColor: 'gray',
+            backgroundColor: 'rgba(0, 0, 0, 0.08)',
             height: 1,
           }}
         />
@@ -96,66 +96,67 @@ export const Grades = () => {
     const ListHeader = () => {
       return (
         <View>
-          <View style={{flexDirection: 'row', width: 680, height: 45}}>
+          <View style={{flexDirection: 'row', width: 640, height: 45}}>
               <View style={{ width: 160, justifyContent:  'center', alignItems:  'flex-start', padding: 5}}>
                   <Text style={{color: 'rgba(0, 0, 0, 0.5)'}}>Name</Text>
               </View>
 
-              <View style={{backgroundColor: 'gray', width: 1, height:45,}}/>
+              <View style={{backgroundColor: 'rgba(0, 0, 0, 0.08)', width: 1, height:45,}}/>
 
               <View style={{ width: 160, justifyContent:  'center', alignItems:   'flex-start', padding: 5}}>
                   <Text style={{color: 'rgba(0, 0, 0, 0.5)'}}>Date</Text>
               </View>
 
-              <View style={{ backgroundColor: 'gray', width: 1, height:45,}}/>
+              <View style={{ backgroundColor: 'rgba(0, 0, 0, 0.08)', width: 1, height:45,}}/>
 
               <View style={{ width: 80, justifyContent:  'center', alignItems:  'flex-start', padding: 5}}>
                   <Text style={{color: 'rgba(0, 0, 0, 0.5)'}}>Grade</Text>
               </View>
 
-              <View style={{ backgroundColor: 'gray', width: 1, height:45,}}/>
+              <View style={{ backgroundColor: 'rgba(0, 0, 0, 0.08)', width: 1, height:45,}}/>
 
               <View style={{ width: 160, justifyContent:  'center', alignItems:   'flex-start', padding: 5}}>
                   <Text style={{color: 'rgba(0, 0, 0, 0.5)'}}>Graded by</Text>
               </View>
 
-              <View style={{ backgroundColor: 'gray', width: 1, height:45,}}/>
+              <View style={{ backgroundColor: 'background: rgba(0, 0, 0, 0.08)', width: 1, height:45,}}/>
 
               <View style={{ width: 80, justifyContent:  'center', alignItems:  'flex-start', padding: 5}}>
                   <Text style={{color: 'rgba(0, 0, 0, 0.5)'}}>See work</Text>
               </View>
           </View>
-          <View style={{backgroundColor: 'gray', height: 1,}}/>
+          <View style={{backgroundColor: 'rgba(0, 0, 0, 0.08)', height: 1,}}/>
         </View>
       )
     }
   
     return (
       <View>
-        <View style={{height: 106}}> 
-          <Text style={{color: "black", fontSize: 28, fontWeight: '700', padding: (48, 60, 24)}}>Grades</Text>
+        <View style={{height: 106, justifyContent: 'flex-end', flexDirection: 'column'}}> 
+          <Text style={{color: "black", fontSize: 28, fontWeight: '700', padding: (48, 60, 40)}}>Grades</Text>
         </View>
 
         <View style={{flexDirection: 'row'}}>
           <View>
-            <View style={{flexDirection: 'row'}}>
-              <Dropdown label={'Semester'} data={semesters} onSelect={setSelected}/>
-              <Dropdown label={'Module'} data={modules} onSelect={setSelected}/>
-              <Dropdown label={'Type'} data={types} onSelect={setSelected}/>
+            <View style={{flexDirection: 'row',  paddingLeft: 40}}>
+              <Dropdown label={'Semester'} data={semesters} onSelect={setSelected1}/>
+              <Dropdown label={'Module'} data={modules} onSelect={setSelected1}/>
+              <Dropdown label={'Type'} data={types} onSelect={setSelected1}/>
             </View>
 
-            <SafeAreaView style={{flexDirection: 'row'}}>
+            <SafeAreaView style={{flexDirection: 'row', paddingLeft: 40, paddingTop: 24, paddingRight: 40}}>
               <FlatList
                 data={gradesDATA.DATA}
                 renderItem={Item}
                 keyExtractor={(item) => item.id}
                 ItemSeparatorComponent={renderSeparator}
                 ListHeaderComponent={ListHeader}
+                showsVerticalScrollIndicator={false}
              />
             </SafeAreaView>
           </View>
 
-          <View>
+          <View style={{alignItems: 'center'}}>
             <Filter HandleFilter={HandleFilter} filter={filters}/>
           </View>
         </View>

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { View, Text, TouchableHighlight, FlatList } from 'react-native';
+import { View, Text, TouchableOpacity, FlatList } from 'react-native';
 import Colors from '../../common/Colors';
 import styles from '../Filter/styles';
 
@@ -16,14 +16,13 @@ export default class Filter extends Component {
 
     _renderList = ({item}) => {
         const isSelected = (this.state.selectedItem === item.id);
-        // console.log(selectedItem)
         const backgroundColor = isSelected ? 'rgba(31, 78, 199, 0.15)' : Colors.addBack;
         const fontWeight = isSelected ? "bold" : "normal";
         const showNext = isSelected ? "block" : "none";
         const colortext = isSelected ? Colors.primary : Colors.text_prim;
 
         return (
-            <TouchableHighlight
+            <TouchableOpacity
                 onPress={() => this._choosen(item.id)}
                 underlayColor={"#ffffff"}
             >
@@ -32,7 +31,7 @@ export default class Filter extends Component {
                         <Text style={{marginLeft: 10, fontSize: 16, color: colortext}}>{item.text}</Text>
                     </View>
                 </View>
-            </TouchableHighlight>
+            </TouchableOpacity>
         )
     }
     render() {

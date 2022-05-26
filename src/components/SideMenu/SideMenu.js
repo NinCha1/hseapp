@@ -19,7 +19,7 @@ export default class SideMenu extends Component{
                 {id: 'cou', text: 'Courses', imagePress: require('../../img/Courses.png'), imageOff: require('../../img/CoursesOff.png'), func: this.coursesBtn},
                 {id: 'gr', text: 'Grades', imagePress: require('../../img/Grades.png'), imageOff: require('../../img/GradesOff.png'), func: this.gradesBtn},
             ],
-            selectedItem: null,
+            selectedItem: 'sc',
         }
     }
 
@@ -28,6 +28,7 @@ export default class SideMenu extends Component{
     }
 
     _renderList = ({item}) => {
+        console.log(this.state.selectedItem)
         const isSelected = (this.state.selectedItem === item.id);
         const backgroundColor = isSelected ? Colors.loginBack : Colors.addBack;
         const colortext = isSelected ? Colors.primary : Colors.text_second;

@@ -20,7 +20,7 @@ export const Assigments = () => {
             {id: 'cw', text: 'Midterm'},
             {id: 'ex', text: 'Exam'},
         ],
-        selectedItem: {id: 'all', text: 'All'},
+        selectedItem: 'all',
     }
 
     const getAssigmentsApi = useApi(scheduleAPI.getAssigments, 'day', 'assignments', 'deadlineId');
@@ -88,6 +88,7 @@ export const Assigments = () => {
                             <Text style={styles.header}>{section.title}</Text>
                         )} 
                         keyExtractor={(item, index) => index}
+                        showsVerticalScrollIndicator={false}
                     />
                     <View>
                         <Filter HandleFilter={HandleFilter} filter={filters}/>

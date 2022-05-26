@@ -1,12 +1,20 @@
 import React, {FC, useState, useRef} from 'react';
-import {StyleSheet, Text, TouchableOpacity, View, Image, Modal, FlatList} from 'react-native';
-import {Picker} from '@react-native-picker/picker';
+import {StyleSheet, Text, TouchableOpacity, View, Image, FlatList, Animated} from 'react-native';
 
 
 const Dropdown = ({label, data, onSelect}) => {
-    console.log(data)
+
+    const fadeAnim = useRef(new Animated.Value(0)).current;
+
+    const showUp = () => {
+        Animated.timing(fadeAnim, {
+            toValue: 1,
+            duration: 5000
+        }).start();
+    };
+
     const DropdownButton = useRef();
-    const [dropdownTop, setDropdownTop] = useState(0);
+    // const [dropdownTop, setDropdownTop] = useState(0);
     const DropdownIcon = require('../../img/dropdown.png')
     const [visible, setVisible] = useState(false);
     const [selected, setSelected] = useState(undefined);
@@ -23,8 +31,8 @@ const Dropdown = ({label, data, onSelect}) => {
     }
 
     const renderItem = ({ item }) => (
-        <TouchableOpacity onPress={() => onItemPress(item)}>
-            <Text style={{color: 'black'}}>{item.label}</Text>
+        <TouchableOpacity onPress={() => onItemPress(item)} style={{padding: (0, 0, 0, 16), alignItems: 'flex-start'}}>
+            <Text style={{color: 'black', fontSize: 16, fontWeight: '500'}}>{item.label}</Text>
         </TouchableOpacity>
     )
 
@@ -38,28 +46,34 @@ const Dropdown = ({label, data, onSelect}) => {
         if (visible) {
             return (
                     <TouchableOpacity 
-                        style={{padding: (0, 0, 0, 16), width: 150, backgroundColor: '#F5F5F5', border: 2, borderColor: ' rgba(0, 0, 0, 0.08)', borderRadius: 8, flexDirection: 'row', alignItems: 'center'}} 
-                        onPress={() => setVisible(false)}
+                        style={{ backgroundColor: '#F5F5F5', border: 2, borderColor: ' rgba(0, 0, 0, 0.08)', flexDirection: 'row', alignItems: 'flex-start'}} 
+                        onPress={() => {setVisible(false);  showUp}}
                     >
-                        <View>
+                        <Animated.View>
                             <FlatList
                                 data={data}
                                 renderItem={renderItem}
                                 keyExtractor={(item, index) => index.toString()}
+                                showsVerticalScrollIndicator={false}
+                                showsHorizontalScrollIndicator={false}
                                 />
-                        </View>
+                        </Animated.View>
                     </TouchableOpacity>
             );
         }
     };
 
     return (
-        <TouchableOpacity onPress={toggleDropdown}>
-            <View style={{padding: (0, 0, 0, 16), width: 150, height: 48, backgroundColor: '#F5F5F5', border: 2, borderColor: ' rgba(0, 0, 0, 0.08)', borderRadius: 8, flexDirection: 'row', alignItems: 'center'}}>
-                <Text style={{color: 'black'}}> {(selected && selected.label) || label}</Text>
-                <Image source={DropdownIcon}/>
+        <TouchableOpacity onPress={toggleDropdown} style={{marginRight: 16, border: 2, borderColor: ' rgba(0, 0, 0, 0.08)'}}>
+            <View style={{borderRadius: 8}}>
+                <View style={{ paddingLeft: 16, height: 48,  backgroundColor: '#F5F5F5', flexDirection: 'row', alignItems: 'center'}}>
+                    <Text style={{color: 'rgba(0, 0, 0, 0.3)', marginRight: 32, fontSize: 16, fontWeight: '500'}}> {(selected && selected.label) || label}</Text>
+                    <View style={{width: 20, height: 20, alignContent: 'center', justifyContent: 'center'}}>
+                        <Image source={DropdownIcon}/>
+                    </View>
+                </View>
+                {renderDropdown()}
             </View>
-            {renderDropdown()}
         </TouchableOpacity>
     );
 }

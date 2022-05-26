@@ -10,6 +10,7 @@ import commonStyles from '../../common/styles';
 import PrimaryButton from '../../components/PrimaryButton/PrimaryButton';
 // import SegmentedControl from '../../components/SegmentedControl/SegmentedControl';
 import SegmentedControlTab from'react-native-segmented-control-tab';
+import SC from '../../components/SegmentedControl/trialSegmentedControl';
 
 
 export default class Login extends Component{
@@ -37,7 +38,7 @@ export default class Login extends Component{
                     <View style={[styles.loginForm, styles.shadowProp]}>
 
                         <Text style={styles.header}>HSE Connect</Text>
-                        <SegmentedControlTab values={['Student', 'Assistant', 'Teacher']} 
+                        {/* <SegmentedControlTab values={['Student', 'Assistant', 'Teacher']} 
                         selectedIndex={this.state.selectedIndex} 
                         onTabPress={this.handleIndexChange}
                         tabStyle={{backgroundColor: '#FFFFFF', borderColor: 'white'}}
@@ -46,7 +47,11 @@ export default class Login extends Component{
                         activeTabStyle={{backgroundColor: '#FFFFFF', borderEndColor: 'red'}}
                         activeTabTextStyle={{fontFamily: 'Inter', fontStyle: 'normal', fontSize: 15, color: '#1F4EC7'}}
                         // tabBadgeContainterStyle={{color: 'red', borderRadius: 8}}
-                        />
+                        /> */}
+                        <View style={{width: '100%', height: 50}}>
+                            <SC/>
+                        </View>
+                
                         <TextInput style={styles.loginInput} placeholder="Email" placeholderTextColor = "rgba(0, 0, 0, 0.5)"/>
                         <TextInput style={styles.loginInput} placeholder="Password" placeholderTextColor = "rgba(0, 0, 0, 0.5)"/>
                         <TouchableOpacity  style={styles.btn}onPress={() => {}}>

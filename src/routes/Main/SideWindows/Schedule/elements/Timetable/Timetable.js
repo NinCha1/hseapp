@@ -44,6 +44,7 @@ export const Timetable = () => {
                             <Text style={styles.header}>{section.title}</Text>
                         )} 
                         keyExtractor={(item, index) => index}
+                        showsVerticalScrollIndicator={false}
                     />
                     <View style={{minWidth: '30%'}}>
                         <Calendar style={styles.components}/>
