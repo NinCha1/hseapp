@@ -100,14 +100,14 @@ export default class Calendar extends Component {
             <View style={styles.container}>
                 <View style={styles.header}>
                     <TouchableOpacity onPress={() => this.changeMonth(-1)}>
-                        <Image source={require('../../img/leftButton.png')}/>
+                        <Image source={require('../../../assets/img/leftButton.png')}/>
                     </TouchableOpacity>
                     <Text style={styles.month}>
                         {this.months[this.state.activeDate.getMonth()]} &nbsp;
                         {this.state.activeDate.getFullYear()}
                     </Text>
                     <TouchableOpacity onPress={() => this.changeMonth(+1)}>
-                        <Image source={require('../../img/rightButton.png')}/>
+                        <Image source={require('../../../assets/img/rightButton.png')}/>
                     </TouchableOpacity>
                 </View>
                 <View style={styles.body}>

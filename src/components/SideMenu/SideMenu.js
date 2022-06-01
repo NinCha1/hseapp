@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {View, Text, TouchableOpacity, Image, FlatList, TouchableHighlight} from 'react-native';
 import {Courses} from '../../routes/Main/SideWindows/Courses/Courses';
+import { IDK } from '../../routes/Main/SideWindows/Courses/idk';
 import {Grades} from '../../routes/Main/SideWindows/Grades/Grades';
 import {Schedule} from '../../routes/Main/SideWindows/Schedule/Schedule';
 import {navigateToMenu} from '../../routes/Main/Main'
@@ -15,9 +16,9 @@ export default class SideMenu extends Component{
 
         this.state = {
             subjCategory: [
-                {id: 'sc', text: 'Schedule', imagePress:require('../../img/Schedule.png'), imageOff: require('../../img/ScheduleOff.png'), func: this.scheduleBtn},
-                {id: 'cou', text: 'Courses', imagePress: require('../../img/Courses.png'), imageOff: require('../../img/CoursesOff.png'), func: this.coursesBtn},
-                {id: 'gr', text: 'Grades', imagePress: require('../../img/Grades.png'), imageOff: require('../../img/GradesOff.png'), func: this.gradesBtn},
+                {id: 'sc', text: 'Schedule', imagePress:require('../../../assets/img/Schedule.png'), imageOff: require('../../../assets/img/ScheduleOff.png'), func: this.scheduleBtn},
+                {id: 'cou', text: 'Courses', imagePress: require('../../../assets/img/Courses.png'), imageOff: require('../../../assets/img/CoursesOff.png'), func: this.coursesBtn},
+                {id: 'gr', text: 'Grades', imagePress: require('../../../assets/img/Grades.png'), imageOff: require('../../../assets/img/GradesOff.png'), func: this.gradesBtn},
             ],
             selectedItem: 'sc',
         }
@@ -58,7 +59,7 @@ export default class SideMenu extends Component{
         this.props.parentCallback(Schedule, "Schedule");
     }
     coursesBtn = () => {
-        this.props.parentCallback(Courses, "Courses");
+        this.props.parentCallback(IDK, "Courses");
     }
     gradesBtn = () => {
         this.props.parentCallback(Grades, "Grades");
@@ -77,13 +78,13 @@ export default class SideMenu extends Component{
                 <View style={styles.bottom}>
                     <TouchableOpacity onPress={this.navigateToMenu} style={styles.logout}>
                         <View style={styles.icon}>
-                            <Image source={require('../../img/logout.png')}/>
+                            <Image source={require('../../../assets/img/logout.png')}/>
                         </View>
                         <Text style={{color: '#C9241A', fontFamily: 'Inter', fontWeight: '500', fontSize: 16, lineHeight: 19}}>Log out</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => {}} style={styles.logout}>
                         <View style={styles.icon}> 
-                            <Image source={require('../../img/Settings.png')}/>
+                            <Image source={require('../../../assets/img/Settings.png')}/>
                         </View>
                          <Text style={{color: Colors.text_second, fontFamily: 'Inter', fontWeight: '500', fontSize: 16, lineHeight: 19}}>Settings</Text>
                     </TouchableOpacity>

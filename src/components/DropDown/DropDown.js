@@ -15,7 +15,7 @@ const Dropdown = ({label, data, onSelect}) => {
 
     const DropdownButton = useRef();
     // const [dropdownTop, setDropdownTop] = useState(0);
-    const DropdownIcon = require('../../img/dropdown.png')
+    const DropdownIcon = require('../../../assets/img/dropdown.png')
     const [visible, setVisible] = useState(false);
     const [selected, setSelected] = useState(undefined);
 

@@ -5,7 +5,7 @@ import Filter from '../../../../components/Filter/Filter';
 import gradesDATA from './gradesDATA';
 
 
-const fileICON ='../../../../img/File.png';
+const fileICON ='../../../../../assets/img/File.png';
 
 
 const semesters = [

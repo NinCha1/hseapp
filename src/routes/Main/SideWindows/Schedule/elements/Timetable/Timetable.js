@@ -20,7 +20,7 @@ const Item = ({item}) => (
             <Text style={styles.type}>{item.type}</Text>
             <Text style={styles.subjectName}>{item.subjectName}</Text>
             <Text style={styles.visitType}>{item.visitType}</Text>
-            <Image style={styles.icon} source={require('../../../../../../img/online.png')}/>
+            <Image style={styles.icon} source={require('../../../../../../../assets/img/online.png')}/>
         </View>
     </View>
 );
