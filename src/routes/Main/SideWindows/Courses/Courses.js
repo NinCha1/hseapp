@@ -38,6 +38,29 @@ export const Courses = ({navigation}) => {
         filtering(newData)
     }
 
+//    function teacherStaff (teacherinfo) {
+//         return (
+//             <View style={{}}>
+//                 <FlatList
+//                     data={teacherinfo}
+//                     keyExtractor={(item) => item.name}
+//                     renderItem={({item}) => {
+//                         <View style={{padding: 12, alignItems: 'center', flexDirection: 'row'}}>
+//                             <View>
+//                                 <Image style={styles.icon} source={require('../../../../../assets/img/profile.png')}/>
+//                             </View>
+//                             <View>
+//                                 <Text style={styles.teacherName}>{item.name}</Text>
+//                                 <Text style={styles.teacherInfo}>{item.role} · {item.group}</Text>
+//                             </View>
+//                         </View>
+//                     }}
+//                     /> 
+//             </View>
+
+//         )
+//     }
+
 
     const Item = ({item}) => (
         <View>
@@ -55,6 +78,7 @@ export const Courses = ({navigation}) => {
             <View style={{flexDirection: 'row', marginBottom: 100}}>
             {
                 item.teachers.map((element) => {
+                    // teacherStaff(item.teachers)
                     return (
                     <View style={{padding: 12, alignItems: 'center', flexDirection: 'row'}}>
                         <View>

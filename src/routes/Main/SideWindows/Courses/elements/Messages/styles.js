@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
-
+import Colors from "../../../../../../common/Colors";
+import { Inter_100Thin } from "@expo-google-fonts/inter";
 export default StyleSheet.create(
     {
         container: {
@@ -48,27 +49,32 @@ export default StyleSheet.create(
         },
 
 
-        userName: {
+        chatName: {
+            fontWeight: '500',
+            color: 'black',
+            fontSize: 16,
+        },
+
+        lastSender: {
+            fontWeight: '400',
             fontSize: 14,
-            fontWeight: 'bold',
-            fontFamily: 'Lato-Regular',
-            color: 'black'
+            color: Colors.text_prim,
         },
 
         containerAdd: {
             flexDirection: 'row',
-            justifyContent: 'space-between'
         },
 
         PostTime: {
-            fontSize: 12,
-            color: '#666',
-            fontFamily: 'Lato-Regular',
+            fontSize: 14,
+            color: Colors.text_second,
+            fontWeight: 400,
         },
 
         MessageText: {
             fontSize: 14,
-            color: '#333333'
+            color: Colors.text_second,
+            fontWeight: 400,
         }
     }
 )

@@ -5,6 +5,7 @@ import MessageInput from '../../../../../../components/MessageInput';
 import { useCurrentRoomId, useRoom, useRoomMessages } from '../../../../../../API/store';
 import styles from './styles';
 
+
 const Messages = [
     {
       id: '1',
@@ -33,6 +34,7 @@ const Messages = [
   ];
 
 const MessagesScreen = ({navTo}) => {
+
     return (
         <View style={styles.container}>
             <FlatList
@@ -45,13 +47,11 @@ const MessagesScreen = ({navTo}) => {
                     <View style={{width: 60, height: 60, backgroundColor: '#C4C4C4', borderRadius: 30}}></View>
                       </View>
                     <View style={styles.textSection}>
-                        <View style={styles.UserInfoText}>
-                            <Text style={styles.userName}>{item.userName}</Text>
-                        </View>
-                        <Text style={styles.userName}>{item.lastSender}</Text>
+                            <Text style={styles.chatName}>{item.userName}</Text>
+                        <Text style={styles.lastSender}>{item.lastSender}</Text>
                         <View style={styles.containerAdd}>
                             <Text style={styles.MessageText}>{item.messageText}</Text>
-                            <Text style={styles.PostTime}>{item.messageTime}</Text>
+                            <Text style={styles.PostTime}> · {item.messageTime}</Text>
                         </View>
                     </View>
                     </View>

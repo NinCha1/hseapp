@@ -1,4 +1,5 @@
 import { atom, atomFamily, useSetRecoilState, useRecoilValue} from 'recoil';
+import {useState} from 'react';
 // import faker from 'faker';
 
 const generateStore = (users = 4, messages = 3) => {
