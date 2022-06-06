@@ -18,7 +18,7 @@ import * as Keychain from 'react-native-keychain';
 export const Login = ({navigation}) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [role, setRole] = useState('PROFESSOR');
+    const [role, setRole] = useState('');
 
     const authContext = useContext(AuthContext);
     const {publicAxios} = useContext(AxiosContext);
@@ -54,11 +54,10 @@ export const Login = ({navigation}) => {
     };
 
     const handleRole = (SCdata) => {
-        // setRole(SCdata)
+        setRole(SCdata)
         console.log(SCdata)
     }
 
-    console.log(role)
     const loginBtn = () => {
         navigation.navigate('Main')
     }
