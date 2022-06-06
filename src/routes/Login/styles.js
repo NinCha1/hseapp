@@ -67,6 +67,9 @@ export default StyleSheet.create({
         height: 48,
         marginVertical: 10,
         flexDirection: 'row',
+        // "&:hover": {
+        //      background: "#efefef"
+        //  }
         // backgroundColor: 'red'
         // left: 10,
     }

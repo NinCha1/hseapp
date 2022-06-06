@@ -50,6 +50,18 @@ const DATA = [
                 group: '193',
 
             },
+            {
+                name: 'Nikita Medved',
+                role: 'Seminarist',
+                group: '193',
+
+            },
+            {
+                name: 'Nikita Medved',
+                role: 'Seminarist',
+                group: '193',
+
+            },
         ]
     },
 

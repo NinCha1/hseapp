@@ -3,6 +3,7 @@ import {View} from 'react-native';
 import SideMenu from '../../components/SideMenu/SideMenu';
 import {Schedule} from './SideWindows/Schedule/Schedule';
 import styles from './stylesMain';
+import { Login } from '../Login/Login';
 
 
 
@@ -18,7 +19,9 @@ export default class Main extends Component {
     }
 
     navigateToLogin = () => {
-        this.props.navigation.goBack();
+        return (
+            <Login/>
+        )
     }
 
     render() {

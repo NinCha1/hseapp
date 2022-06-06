@@ -1,75 +1,88 @@
-import React, {Component} from 'react';
+import React, { useState, useContext } from 'react';
 import {
     View,
     Text,
     TextInput,
-    TouchableOpacity
+    TouchableOpacity,
+    Alert,
 } from 'react-native';
 import styles from './styles';
 import commonStyles from '../../common/styles';
 import PrimaryButton from '../../components/PrimaryButton/PrimaryButton';
-// import SegmentedControl from '../../components/SegmentedControl/SegmentedControl';
-import SegmentedControlTab from'react-native-segmented-control-tab';
 import SC from '../../components/SegmentedControl/trialSegmentedControl';
+import { AuthContext } from '../../API/AuthContext';
+import { AxiosContext } from '../../API/AxiosProvider';
+import * as Keychain from 'react-native-keychain';
 
 
-export default class Login extends Component{
-    constructor(){
-        super()
-        this.state = {
-          selectedIndex: 0,
-        };
-      }
-  
-    handleIndexChange = (index) => {
-        this.setState({
-          ...this.state,
-          selectedIndex: index,
-        });
+export const Login = ({navigation}) => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [role, setRole] = useState('PROFESSOR');
+
+    const authContext = useContext(AuthContext);
+    const {publicAxios} = useContext(AxiosContext);
+
+    const onLogin = async () => {
+        try {
+            const response = await publicAxios.post('/auth/login', {
+                email, 
+                password,
+                role,
+            });
+
+            const {accessToken, refreshToken} = response.data;
+
+
+            authContext.setAuthState({
+                accessToken,
+                refreshToken,
+                authenticated: true,
+            });
+
+            await Keychain.setGenericPassword(
+                'token',
+                JSON.stringify({
+                    accessToken,
+                    refreshToken,
+                }),
+            );
+
+        } catch (error) {
+            Alert.alert('Login Failed', error.response.data.message);
+        }
+    };
+
+    const handleRole = (SCdata) => {
+        // setRole(SCdata)
+        console.log(SCdata)
     }
 
-    loginBtn = () => {
-        this.props.navigation.navigate('Main')
+    console.log(role)
+    const loginBtn = () => {
+        navigation.navigate('Main')
     }
-    render() {
         return(
             <View style={commonStyles.container}>
                 <View style={styles.container}>
                     <View style={[styles.loginForm, styles.shadowProp]}>
 
                         <Text style={styles.header}>HSE Connect</Text>
-                        {/* <SegmentedControlTab values={['Student', 'Assistant', 'Teacher']} 
-                        selectedIndex={this.state.selectedIndex} 
-                        onTabPress={this.handleIndexChange}
-                        tabStyle={{backgroundColor: '#FFFFFF', borderColor: 'white'}}
-                        tabsContainerStyle={{marginVertical: 10, padding: 7, width: 400, height: 50}}
-                        tabTextStyle={{fontFamily: 'Inter', fontStyle: 'normal', fontSize: 15, color: 'black'}}
-                        activeTabStyle={{backgroundColor: '#FFFFFF', borderEndColor: 'red'}}
-                        activeTabTextStyle={{fontFamily: 'Inter', fontStyle: 'normal', fontSize: 15, color: '#1F4EC7'}}
-                        // tabBadgeContainterStyle={{color: 'red', borderRadius: 8}}
-                        /> */}
                         <View style={{width: '100%', height: 50}}>
-                            <SC/>
+                            <SC parentCallback={handleRole}/>
                         </View>
                 
-                        <TextInput style={styles.loginInput} placeholder="Email" placeholderTextColor = "rgba(0, 0, 0, 0.5)"/>
-                        <TextInput style={styles.loginInput} placeholder="Password" placeholderTextColor = "rgba(0, 0, 0, 0.5)"/>
-                        <TouchableOpacity  style={styles.btn}onPress={() => {}}>
-                            <Text style={{color: '#1F4EC7'}}>Recover</Text>
-                        </TouchableOpacity>
-                        <PrimaryButton title='Log in' style={styles.btn} onPress={this.loginBtn}/>
+                        <TextInput style={styles.loginInput} placeholder="Email" placeholderTextColor = "rgba(0, 0, 0, 0.5)" onChangeText={text => setEmail(text)} value={email}/>
+                        <TextInput style={styles.loginInput} placeholder="Password" placeholderTextColor = "rgba(0, 0, 0, 0.5)" onChangeText={text => setPassword(text)} value={password}/>
+        
+                        <PrimaryButton title='Log in' style={styles.btn} onPress={() => onLogin()}/>
+
                         <TouchableOpacity style={[styles.btn, {justifyContent: 'center'}]} onPress={() => {}}>
                             <Text style={{color: '#1F4EC7', }}>Can't log in?</Text>
                         </TouchableOpacity>
 
                     </View>
-                    <View style={{width: 100, height: 100}}>
-                        <TouchableOpacity style={[styles.btn, {justifyContent: 'center', alignSelf: 'center'}]} onPress={() => {}}>
-                                <Text style={{color: '#1F4EC7', }}>Register</Text>
-                        </TouchableOpacity>
-                    </View>
                 </View>
             </View>
         )
-    }
 }

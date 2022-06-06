@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, useContext} from 'react';
 import {View, Text, TouchableOpacity, Image, FlatList, TouchableHighlight} from 'react-native';
 import {Courses} from '../../routes/Main/SideWindows/Courses/Courses';
 import { IDK } from '../../routes/Main/SideWindows/Courses/idk';
@@ -7,9 +7,12 @@ import {Schedule} from '../../routes/Main/SideWindows/Schedule/Schedule';
 import {navigateToMenu} from '../../routes/Main/Main'
 import styles from './stylesSideMenu';
 import Colors from '../../common/Colors';
-
+import { Login } from '../../routes/Login/Login';
+import { AuthContext } from '../../API/AuthContext';
 
 export default class SideMenu extends Component{
+
+    static contextType = AuthContext
 
     constructor(props){
         super(props);
@@ -29,7 +32,6 @@ export default class SideMenu extends Component{
     }
 
     _renderList = ({item}) => {
-        console.log(this.state.selectedItem)
         const isSelected = (this.state.selectedItem === item.id);
         const backgroundColor = isSelected ? Colors.loginBack : Colors.addBack;
         const colortext = isSelected ? Colors.primary : Colors.text_second;
@@ -51,10 +53,6 @@ export default class SideMenu extends Component{
         )
     }
 
-    navigateToMenu = () => {
-        this.props.onPress?.();
-    }
-
     scheduleBtn = () => {
         this.props.parentCallback(Schedule, "Schedule");
     }
@@ -65,7 +63,12 @@ export default class SideMenu extends Component{
         this.props.parentCallback(Grades, "Grades");
     }
 
+    loginOut = () => {
+        console.log(this.context.logout())
+    }
+
     render() {
+
         return(
             <View style={styles.tab}>
                 <View style={styles.upper}>
@@ -76,7 +79,7 @@ export default class SideMenu extends Component{
                     />
                 </View>
                 <View style={styles.bottom}>
-                    <TouchableOpacity onPress={this.navigateToMenu} style={styles.logout}>
+                    <TouchableOpacity onPress={this.loginOut} style={styles.logout}>
                         <View style={styles.icon}>
                             <Image source={require('../../../assets/img/logout.png')}/>
                         </View>

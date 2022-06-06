@@ -34,10 +34,6 @@ export default StyleSheet.create(
             alignItems: 'center',
         },
 
-        rightContainer: {
-
-        },
-
         headerList: {
             fontSize: 16, 
             fontWeight: '500', 
@@ -82,5 +78,13 @@ export default StyleSheet.create(
             fontSize: 12,
             fontWeight: '500',
         },
+
+        teachersContainer: {
+            flexDirection: 'row', 
+            marginBottom: 100, 
+            width: '100%', 
+            display: 'flex', 
+            flexWrap: 'wrap'
+        }
     }
 )

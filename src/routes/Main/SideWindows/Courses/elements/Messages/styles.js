@@ -74,7 +74,7 @@ export default StyleSheet.create(
         MessageText: {
             fontSize: 14,
             color: Colors.text_second,
-            fontWeight: 400,
+            fontWeight: '400',
         }
     }
 )

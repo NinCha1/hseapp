@@ -7,8 +7,9 @@ export default class SC extends Component{
         xTabOne: 0,
         xTabTwo: 0,
         xTabThree: 0,
-        translateX: new Animated.Value(0)
+        translateX: new Animated.Value(0),
     }
+
 
     handleSlide = type => {
         let { active, xTabOne, xTabTwo, xTabThree, translateX} = this.state;
@@ -19,6 +20,10 @@ export default class SC extends Component{
         }).start()
     }
     render() {
+        const sendData = (role) => {
+            this.props.parentCallback(role)
+            console.log(role)
+        }
         let {xTabOne, xTabTwo, xTabThree, translateX, active} = this.state;
         return (
             <View style={{flex: 1}}>
@@ -26,8 +31,6 @@ export default class SC extends Component{
                     <View 
                     style={{
                         flexDirection: 'row', 
-                        // marginTop: 40, 
-                        // marginBottom: 20,
                         position: 'relative',
                         height: 36
                         }}>
@@ -38,21 +41,21 @@ export default class SC extends Component{
                         style={{flex: 1, justifyContent: 'center', alignItems: 'center',  borderTopRightRadius: 0, borderBottomRightRadius: 0,  borderRadius: 0, 
                        }}
                         onLayout={event => this.setState({xTabOne: event.nativeEvent.layout.x})}
-                        onPress={() => this.setState({active: 0}, () => this.handleSlide(xTabOne))}
+                        onPress={() => {this.setState({active: 0}, () => this.handleSlide(xTabOne)); sendData('student')}}
                         >
                             <Text style={{color: 'rgba(0, 0, 0, 0.5)'}}>Student</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
                          style={{flex: 1, justifyContent: 'center', alignItems: 'center',  borderLeftWidth: 0, borderTopLeftRadius: 0, borderBottomLeftRadius: 0,}}
                          onLayout={event => this.setState({xTabTwo: event.nativeEvent.layout.x})}
-                         onPress={() => this.setState({active: 1}, () => this.handleSlide(xTabTwo))}
+                         onPress={() => this.setState({active: 1}, () => this.handleSlide(xTabTwo), {role: 'assistant'})}
                         >
                             <Text style={{color: 'rgba(0, 0, 0, 0.5)'}}>Assistant</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
                          style={{flex: 1, justifyContent: 'center', alignItems: 'center',  borderLeftWidth: 0, borderTopLeftRadius: 0, borderBottomLeftRadius: 0,  borderRadius: 4}}
                          onLayout={event => this.setState({xTabThree: event.nativeEvent.layout.x})}
-                         onPress={() => this.setState({active: 2}, () => this.handleSlide(xTabThree))}
+                         onPress={() => this.setState({active: 2}, () => this.handleSlide(xTabThree), {role: 'professor'})}
                         >
                             <Text style={{color: 'rgba(0, 0, 0, 0.5)'}}>Professor</Text>
                         </TouchableOpacity>

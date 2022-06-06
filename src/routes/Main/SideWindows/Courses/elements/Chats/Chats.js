@@ -1,10 +1,5 @@
-import React, {useState, useEffect, useCallback} from 'react';
-import {View, Scroll, Text, Button, StyleSheet, TextInput, TouchableHighlight, FlatList, TouchableOpacity} from 'react-native';
-import {Bubble, GiftedChat, Send} from 'react-native-gifted-chat';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { useRooms, useCurrentRoomId } from '../../../../../../API/store';
-import RoomDetails from '../../../../../../components/RoomDetails';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import React, { useState, useEffect, useRef } from 'react';
+import { View, Text, TextInput, FlatList, TouchableOpacity } from 'react-native';
 import Colors from '../../../../../../common/Colors';
 
 const ChatScreen = () => {
@@ -17,6 +12,7 @@ const ChatScreen = () => {
     }
   ]);
   const [typing, setTyping] = useState('');
+  const chatList = useRef(null)
 
   const sendMessage = () => {
     const message = typing;
@@ -32,8 +28,6 @@ const ChatScreen = () => {
 
     setTyping('')
   }
-  
-  console.log(messages)
 
   useEffect(() => {
     setMessages([
@@ -61,11 +55,13 @@ const ChatScreen = () => {
 
 
   return (
-    <View style={{flex: 1, backgroundColor: 'white', padding: 40}}>
+    <View style={{flex: 1, backgroundColor: 'white', padding: 40, alignItems: 'center'}}>
       <View style={{width: 668}}>
       <View style={{height: '90%', }}>
       <FlatList
       data={messages}
+      ref = {chatList} 
+      onContentSizeChange={() => chatList.current.scrollToEnd()}
       keyExtractor = {(item, index) => index.toString()}
       renderItem = {({item}) => {
         if (item.id == 1) {
