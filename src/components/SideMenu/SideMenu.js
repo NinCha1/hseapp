@@ -1,7 +1,6 @@
 import React, {Component, useContext} from 'react';
 import {View, Text, TouchableOpacity, Image, FlatList, TouchableHighlight} from 'react-native';
-import {Courses} from '../../routes/Main/SideWindows/Courses/Courses';
-import { IDK } from '../../routes/Main/SideWindows/Courses/idk';
+import { CoursesScreen } from '../../routes/Main/SideWindows/Courses/CoursesScreen';
 import {Grades} from '../../routes/Main/SideWindows/Grades/Grades';
 import {Schedule} from '../../routes/Main/SideWindows/Schedule/Schedule';
 import {navigateToMenu} from '../../routes/Main/Main'
@@ -57,14 +56,14 @@ export default class SideMenu extends Component{
         this.props.parentCallback(Schedule, "Schedule");
     }
     coursesBtn = () => {
-        this.props.parentCallback(IDK, "Courses");
+        this.props.parentCallback(CoursesScreen, "Courses");
     }
     gradesBtn = () => {
         this.props.parentCallback(Grades, "Grades");
     }
 
     loginOut = () => {
-        console.log(this.context.logout())
+        this.context.logout()
     }
 
     render() {
@@ -75,7 +74,7 @@ export default class SideMenu extends Component{
                     <FlatList
                         data={this.state.subjCategory}
                         renderItem={this._renderList}
-                        keyExtractor={(item, index) => item}
+                        keyExtractor={(item, index) => index.toString()}
                     />
                 </View>
                 <View style={styles.bottom}>

@@ -9,7 +9,7 @@ const Tab = createMaterialTopTabNavigator();
 export const Schedule = () => {
         return (
             <Tab.Navigator
-            tabBarOptions={styles.tab}>
+            screenOptions={styles.tab}>
                 <Tab.Screen name="Timetable" component={Timetable}/>
                 <Tab.Screen name="Assigments" component={Assigments}/>
             </Tab.Navigator>

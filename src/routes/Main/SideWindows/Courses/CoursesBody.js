@@ -7,7 +7,7 @@ import MessagesScreen from './elements/Messages/Messages';
 import ChatNav from '../../../../navigation/ChatNav'
 import { NavigationHelpersContext } from '@react-navigation/native';
 
-export const Courses = ({navigation}) => {
+export const CoursesBody = ({navigation}) => {
     const filters = {
         subjCategory: [
             {id: 'la', text: 'Linear Algebra'},
@@ -25,7 +25,7 @@ export const Courses = ({navigation}) => {
     const [title, setTitle] = useState('Linear Algebra')
     // const navigaTo = () => navigation.navigate('Chat')
     function navigaTo () {
-        navigation.navigate('Chat')
+        navigation.navigate('Chat', {title: title})
     }
 
     const HandleFilter = (value) => {
@@ -41,9 +41,14 @@ export const Courses = ({navigation}) => {
         filtering(newData)
     }
 
+    // const sendData = (titleHeader) => {
+    //     parentCallBack(titleHeader)
+    // }
+
 
     const Item = ({item}) => (
         <View>
+            <Text style={styles.headerList}>Chats</Text>
             <MessagesScreen navTo={navigaTo}/>
             <Text style={styles.headerList}>Course description</Text>
             <Text style={styles.courseDescription}>{item.courseDesc}</Text>
@@ -87,25 +92,16 @@ export const Courses = ({navigation}) => {
 
         return (
             <View style={styles.container}>
-                {/* <View style={styles.headerContainer}>
+                <View style={styles.headerContainer}>
                     <Text style={styles.header}>
                         Courses · {title}
                     </Text>
-                </View> */}
+                </View>
                 <View style={{flexDirection: 'row'}}>
 
                     <View style={styles.contentContainer}>
                         <FlatList
                         data={filterData}
-                        ListHeaderComponent={
-                            <View>
-                                <TextInput 
-                                placeholder="Search" 
-                                placeholderTextColor = "rgba(0, 0, 0, 0.5)" 
-                                style={styles.inputField}
-                                />
-                            </View>
-                        }
                         keyExtractor={(item, index) => index}
                         renderItem={Item}
                         showsVerticalScrollIndicator={false}

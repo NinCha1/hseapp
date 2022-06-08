@@ -2,8 +2,7 @@ import React, {createContext, useContext} from 'react';
 import axios from 'axios';
 import { AuthContext } from './AuthContext';
 import createAuthRefreshInterceptor from 'axios-auth-refresh';
-import *  as Keychain from 'react-native-keychain';
-import { create } from 'react-test-renderer';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const AxiosContext = createContext();
 const {Provider} = AxiosContext;
@@ -52,7 +51,7 @@ const AxiosProvider = ({children}) => {
                     accessToken: tokenRefreshResponse.data.accessToken,
                 });
 
-                await Keychain.setGenericPassword(
+                await AsyncStorage.setItem(
                     'token',
                     JSON.stringify({
                         accessToken: tokenRefreshResponse.data.accessToken,

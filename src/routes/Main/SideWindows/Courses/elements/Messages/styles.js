@@ -68,7 +68,7 @@ export default StyleSheet.create(
         PostTime: {
             fontSize: 14,
             color: Colors.text_second,
-            fontWeight: 400,
+            fontWeight: '400',
         },
 
         MessageText: {

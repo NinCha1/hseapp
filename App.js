@@ -1,11 +1,10 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import StackNav from './src/navigation/StackNav';
 import { AuthContext } from './src/API/AuthContext';
-import * as Keychain from 'react-native-keychain';
 import { Login } from './src/routes/Login/Login';
 import Main from './src/routes/Main/Main';
 import Spinner from './src/components/Spinner/Spinner';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const App = () => {
     const authContext = useContext(AuthContext);
@@ -13,8 +12,8 @@ export const App = () => {
 
     const loadJWT = useCallback(async () => {
       try {
-        const value = await Keychain.getGenericPassword();
-        const jwt = JSON.parse(value.password);
+        const value = await AsyncStorage.getItem('token');
+        const jwt = JSON.parse(value);
 
         authContext.setAuthState({
           accessToken: jwt.accessToken || null,
@@ -22,10 +21,13 @@ export const App = () => {
           authenticated: jwt.accessToken !== null,
         });
 
+        console.log(jwt)
+        console.log(authContext)
+
         setStatus('success');
       } catch (error) {
         setStatus('error')
-        console.log(`Keychain Error: ${error.message}`);
+        console.log(`AsyncStorage Error: ${error.message}`);
         authContext.setAuthState({
           accessToken: null,
           refreshToken: 'null',
@@ -37,7 +39,6 @@ export const App = () => {
     useEffect(() => {
       loadJWT();
     }, [loadJWT]);
-    console.log(authContext?.authState?.authenticated)
 
     if (status === 'loading') {
       return <Spinner/>

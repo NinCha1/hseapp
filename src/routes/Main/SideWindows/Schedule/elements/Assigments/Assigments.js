@@ -87,7 +87,7 @@ export const Assigments = () => {
                         renderSectionHeader={({section}) => (
                             <Text style={styles.header}>{section.title}</Text>
                         )} 
-                        keyExtractor={(item, index) => index}
+                        keyExtractor={(item, index) => index.toString()}
                         showsVerticalScrollIndicator={false}
                     />
                     <View>

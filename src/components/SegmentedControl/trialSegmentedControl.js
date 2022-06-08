@@ -25,7 +25,7 @@ export default class SC extends Component{
         }
 
         let {xTabOne, xTabTwo, xTabThree, translateX, active} = this.state;
-        
+
         return (
             <View style={{flex: 1}}>
                 <View style={{width: '90%', marginLeft: 'auto', marginRight: 'auto'}}>
@@ -56,7 +56,7 @@ export default class SC extends Component{
                         <TouchableOpacity
                          style={{flex: 1, justifyContent: 'center', alignItems: 'center',  borderLeftWidth: 0, borderTopLeftRadius: 0, borderBottomLeftRadius: 0,  borderRadius: 4}}
                          onLayout={event => this.setState({xTabThree: event.nativeEvent.layout.x})}
-                         onPress={() => {this.setState({active: 2}, () => this.handleSlide(xTabThree)); sendData('PROFFESOR')}}
+                         onPress={() => {this.setState({active: 2}, () => this.handleSlide(xTabThree)); sendData('PROFESSOR')}}
                         >
                             <Text style={{color: 'rgba(0, 0, 0, 0.5)'}}>Professor</Text>
                         </TouchableOpacity>

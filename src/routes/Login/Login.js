@@ -12,13 +12,13 @@ import PrimaryButton from '../../components/PrimaryButton/PrimaryButton';
 import SC from '../../components/SegmentedControl/trialSegmentedControl';
 import { AuthContext } from '../../API/AuthContext';
 import { AxiosContext } from '../../API/AxiosProvider';
-import * as Keychain from 'react-native-keychain';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 export const Login = ({navigation}) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [role, setRole] = useState('');
+    const [role, setRole] = useState('STUDENT');
 
     const authContext = useContext(AuthContext);
     const {publicAxios} = useContext(AxiosContext);
@@ -31,21 +31,22 @@ export const Login = ({navigation}) => {
                 role,
             });
 
-            const {accessToken, refreshToken} = response.data;
+            const accessToken = response.data.token
+            const refreshToken = response.data.token
 
-
+            
             authContext.setAuthState({
-                accessToken,
-                refreshToken,
+                accessToken: response.data.token,
+                refreshToken: response.data.token,
                 authenticated: true,
             });
 
-            await Keychain.setGenericPassword(
+            await AsyncStorage.setItem(
                 'token',
                 JSON.stringify({
                     accessToken,
                     refreshToken,
-                }),
+                })
             );
 
         } catch (error) {
@@ -53,14 +54,11 @@ export const Login = ({navigation}) => {
         }
     };
 
+
     const handleRole = (SCdata) => {
         setRole(SCdata)
-        console.log(SCdata)
     }
 
-    const loginBtn = () => {
-        navigation.navigate('Main')
-    }
         return(
             <View style={commonStyles.container}>
                 <View style={styles.container}>
@@ -71,15 +69,29 @@ export const Login = ({navigation}) => {
                             <SC parentCallback={handleRole}/>
                         </View>
                 
-                        <TextInput style={styles.loginInput} placeholder="Email" placeholderTextColor = "rgba(0, 0, 0, 0.5)" onChangeText={text => setEmail(text)} value={email}/>
-                        <TextInput style={styles.loginInput} placeholder="Password" placeholderTextColor = "rgba(0, 0, 0, 0.5)" onChangeText={text => setPassword(text)} value={password}/>
+                        <TextInput 
+                            style={styles.loginInput} 
+                            placeholder="Email" 
+                            placeholderTextColor = "rgba(0, 0, 0, 0.5)" 
+                            onChangeText={text => setEmail(text)} 
+                            value={email}
+                        />
+
+                        <TextInput 
+                            style={styles.loginInput} 
+                            placeholder="Password" 
+                            placeholderTextColor = "rgba(0, 0, 0, 0.5)" 
+                            onChangeText={text => setPassword(text)} 
+                            value={password} 
+                            secureTextEntry
+                        />
         
                         <PrimaryButton title='Log in' style={styles.btn} onPress={() => onLogin()}/>
 
                         <TouchableOpacity style={[styles.btn, {justifyContent: 'center'}]} onPress={() => {}}>
                             <Text style={{color: '#1F4EC7', }}>Can't log in?</Text>
                         </TouchableOpacity>
-
+                        
                     </View>
                 </View>
             </View>

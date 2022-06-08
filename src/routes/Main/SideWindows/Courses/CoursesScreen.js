@@ -1,20 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import ChatNav from '../../../../navigation/ChatNav'
 import { View, Text } from 'react-native';
 import styles from "./styles";
 
-export const IDK = () => {
+
+export const CoursesScreen = () => {
+
+    const [title, setTitle] = useState('Linear Algebra');
+
+    const HandleTitle = (value) => {
+        setTitle(value)
+    }
+
     return (
         <View style= {{flex: 1,
         flexDirection: 'column',
         minHeight: 100,
         backgroundColor: 'white'}}>
-            <View style={styles.headerContainer}>
-                    <Text style={styles.header}>
-                        Courses 
-                    </Text>
-            </View>
-            <ChatNav/>
+            <ChatNav parentCallBack={HandleTitle}/>
         </View>
     )
 }

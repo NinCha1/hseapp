@@ -6,6 +6,7 @@ import Calendar from '../../../../../../components/Calendar/Calendar';
 import styles from './styles';
 import useApi from '../../../../../../hooks/useApi';
 import scheduleAPI from '../../../../../../API/scheduleAPI';
+import Spinner from '../../../../../../components/Spinner/Spinner'
 
 
 
@@ -34,7 +35,7 @@ export const Timetable = () => {
 
     return (
         <SafeAreaView style={styles.container}>
-            {getTimetableApi.loading ? <ActivityIndicator style={{alignSelf: 'center'}}/> : (
+            {getTimetableApi.loading ? <Spinner/> : (
                 <View style={styles.container}>
                     <SectionList
                         style={{marginLeft: 30}}
@@ -43,11 +44,11 @@ export const Timetable = () => {
                         renderSectionHeader={({section}) => (
                             <Text style={styles.header}>{section.title}</Text>
                         )} 
-                        keyExtractor={(item, index) => index}
+                        keyExtractor={(item, index) => index.toString()}
                         showsVerticalScrollIndicator={false}
                     />
                     <View style={{minWidth: '30%'}}>
-                        <Calendar style={styles.components}/>
+                        {/* <Calendar style={styles.components}/> */}
                     </View>
                 </View>
                     )}
