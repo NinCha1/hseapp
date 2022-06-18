@@ -15,7 +15,7 @@ import { AxiosContext } from '../../API/AxiosProvider';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
-export const Login = ({navigation}) => {
+export const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [role, setRole] = useState('STUDENT');
@@ -34,7 +34,6 @@ export const Login = ({navigation}) => {
             const accessToken = response.data.token
             const refreshToken = response.data.token
 
-            
             authContext.setAuthState({
                 accessToken: response.data.token,
                 refreshToken: response.data.token,

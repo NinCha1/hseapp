@@ -23,62 +23,62 @@ export const Assigments = () => {
         selectedItem: 'all',
     }
 
-    const getAssigmentsApi = useApi(scheduleAPI.getAssigments, 'day', 'assignments', 'deadlineId');
-    const [filter, setFilter] = useState('all');
-    const [filterData, setfilterData] = useState([]);
+    // const getAssigmentsApi = useApi(scheduleAPI.getAssigments, 'day', 'assignments', 'deadlineId');
+    // const [filter, setFilter] = useState('all');
+    // const [filterData, setfilterData] = useState([]);
 
-    useEffect(() => {
-        getAssigmentsApi.request(1);
-    }, []);
+    // useEffect(() => {
+    //     getAssigmentsApi.request(1);
+    // }, []);
 
-    useEffect(() => {
-        filterDeadlines();
-    }, [filter]);
+    // useEffect(() => {
+    //     filterDeadlines();
+    // }, [filter]);
 
-    function filterDeadlines ()  {
-        const newData = JSON.parse(JSON.stringify(getAssigmentsApi.data));
-        filtering(newData)
-    }
+    // function filterDeadlines ()  {
+    //     const newData = JSON.parse(JSON.stringify(getAssigmentsApi.data));
+    //     filtering(newData)
+    // }
      
-    const HandleFilter = (value) => {
-        setFilter(value)
-    }
+    // const HandleFilter = (value) => {
+    //     setFilter(value)
+    // }
 
-    const Item = ({item}) => (
-        <View style={styles.item}>
-            <View style={styles.delimeter}/>
-            <View style={styles.content}>
-                <Text style={styles.subjectName}>{item.subjectName}</Text>
-                <Text style={styles.assigmentName}>{item.assigmentName}</Text>
-                <View style={styles.infoCont}>
-                    <View style={[styles.infoView, {backgroundColor: '#F5F5F5'}]}>
-                        <Text style={styles.deadlineTime}>{item.deadlineTime}</Text>
-                    </View>
-                    <View style={[styles.infoView, {backgroundColor: '#F5F5F5', marginLeft: 10}]}>
-                        <Text style={styles.submissionTIme}>{item.sumbisionTIme}</Text>
-                    </View>
-                </View>
-            </View>
-        </View>
-    );
+    // const Item = ({item}) => (
+    //     <View style={styles.item}>
+    //         <View style={styles.delimeter}/>
+    //         <View style={styles.content}>
+    //             <Text style={styles.subjectName}>{item.subjectName}</Text>
+    //             <Text style={styles.assigmentName}>{item.assigmentName}</Text>
+    //             <View style={styles.infoCont}>
+    //                 <View style={[styles.infoView, {backgroundColor: '#F5F5F5'}]}>
+    //                     <Text style={styles.deadlineTime}>{item.deadlineTime}</Text>
+    //                 </View>
+    //                 <View style={[styles.infoView, {backgroundColor: '#F5F5F5', marginLeft: 10}]}>
+    //                     <Text style={styles.submissionTIme}>{item.sumbisionTIme}</Text>
+    //                 </View>
+    //             </View>
+    //         </View>
+    //     </View>
+    // );
 
 
-    function filtering (data) {
-        if (filter.filter == 'all') {
-            setfilterData(data)
-        } else {
-            data.map((element) => {
-                element.data = element.data.filter(item => {
-                    return item.type == filter.filter
-                })
-            })
-            setfilterData(data)
-        }
-    }
+    // function filtering (data) {
+    //     if (filter.filter == 'all') {
+    //         setfilterData(data)
+    //     } else {
+    //         data.map((element) => {
+    //             element.data = element.data.filter(item => {
+    //                 return item.type == filter.filter
+    //             })
+    //         })
+    //         setfilterData(data)
+    //     }
+    // }
 
     return (
         <SafeAreaView style={styles.container}>
-            {getAssigmentsApi.loading ? <ActivityIndicator/> : (
+            {/* {getAssigmentsApi.loading ? <ActivityIndicator/> : (
                 <View style={styles.container}>
                     <SectionList
                         style={{marginLeft: 30}}
@@ -95,7 +95,7 @@ export const Assigments = () => {
                         <Calendar style={styles.components}/>
                     </View>
                 </View>
-            )}
+            )} */}
         </SafeAreaView>
     )
 }

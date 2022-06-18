@@ -21,9 +21,6 @@ export const App = () => {
           authenticated: jwt.accessToken !== null,
         });
 
-        console.log(jwt)
-        console.log(authContext)
-
         setStatus('success');
       } catch (error) {
         setStatus('error')

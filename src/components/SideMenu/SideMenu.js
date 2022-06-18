@@ -3,12 +3,10 @@ import {View, Text, TouchableOpacity, Image, FlatList, TouchableHighlight} from 
 import { CoursesScreen } from '../../routes/Main/SideWindows/Courses/CoursesScreen';
 import {Grades} from '../../routes/Main/SideWindows/Grades/Grades';
 import {Schedule} from '../../routes/Main/SideWindows/Schedule/Schedule';
-import {navigateToMenu} from '../../routes/Main/Main'
 import styles from './stylesSideMenu';
 import Colors from '../../common/Colors';
-import { Login } from '../../routes/Login/Login';
 import { AuthContext } from '../../API/AuthContext';
-
+import { Account } from '../../routes/Main/SideWindows/Account/Account';
 export default class SideMenu extends Component{
 
     static contextType = AuthContext
@@ -62,6 +60,10 @@ export default class SideMenu extends Component{
         this.props.parentCallback(Grades, "Grades");
     }
 
+    accountBtn = () => {
+        this.props.parentCallback(Account, "Account");
+    }
+
     loginOut = () => {
         this.context.logout()
     }
@@ -84,11 +86,11 @@ export default class SideMenu extends Component{
                         </View>
                         <Text style={{color: '#C9241A', fontFamily: 'Inter', fontWeight: '500', fontSize: 16, lineHeight: 19}}>Log out</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => {}} style={styles.logout}>
+                    <TouchableOpacity onPress={this.accountBtn} style={styles.logout}>
                         <View style={styles.icon}> 
                             <Image source={require('../../../assets/img/Settings.png')}/>
                         </View>
-                         <Text style={{color: Colors.text_second, fontFamily: 'Inter', fontWeight: '500', fontSize: 16, lineHeight: 19}}>Settings</Text>
+                         <Text style={styles.account}>Account</Text>
                     </TouchableOpacity>
                 </View>
             </View>

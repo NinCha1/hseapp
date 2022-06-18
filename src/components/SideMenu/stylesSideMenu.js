@@ -1,23 +1,9 @@
 import {StyleSheet} from 'react-native';
 import Colors from '../../common/Colors';
-// import "inter-ui/inter.css";
-
-import {
-    useFonts,
-    Inter_100Thin,
-    Inter_200ExtraLight,
-    Inter_300Light,
-    Inter_400Regular,
-    Inter_500Medium,
-    Inter_600SemiBold,
-    Inter_700Bold,
-    Inter_800ExtraBold,
-    Inter_900Black,
-  } from '@expo-google-fonts/inter';
 
 export default StyleSheet.create({
     tab: {
-        width: '20%',
+        width: 250,
         backgroundColor: Colors.addBack,
         flexDirection: 'column',
         direction: 'flex',
@@ -42,7 +28,6 @@ export default StyleSheet.create({
     },
     textButton: {
         marginLeft: '2%',
-        // fontFamily: Inter_100Thin,
         fontStyle: 'normal',
         fontSize: 16,
         color: 'rgba(0, 0, 0, 0.5)',
@@ -59,7 +44,6 @@ export default StyleSheet.create({
         marginTop: 20,
     },
     bottom: {
-        // width: '100%',
         height: '100%',
         justifyContent: 'flex-start',
 
@@ -69,6 +53,11 @@ export default StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'flex-start',
         marginBottom: 8,
-        // alignSelf: 'center'
-    }
+    },
+    account: {
+        color: Colors.text_second,  
+        fontWeight: '500', 
+        fontSize: 16, 
+        lineHeight: 19
+    },
 })

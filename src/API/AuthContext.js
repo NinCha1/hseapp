@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, {createContext, useState} from 'react';
+
 const AuthContext = createContext(null);
 const {Provider} = AuthContext;
 
@@ -11,17 +12,12 @@ const AuthProvider = ({children}) => {
     });
 
     const logout = async () => {
-        try {
-            await AsyncStorage.removeItem('token')
-            setAuthState({
-                accessToken: null,
-                refreshToken: null,
-                authenticated: false,
-            });
-        } catch (error) {
-            console.log(`${error.message}`)
-        }
-
+        await AsyncStorage.removeItem('token')
+        setAuthState({
+            accessToken: null,
+            refreshToken: null,
+            authenticated: false,
+        });
     };
 
     const getAccessToken = () => {
