@@ -6,6 +6,7 @@ export default StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         backgroundColor: Colors.background,
+        width: '100%',
       },
       item: {
         padding: 10,

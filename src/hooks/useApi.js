@@ -10,13 +10,13 @@ export default useApi = (apiFunc) => {
     const request = async (...args) => {
         setLoading(true);
         const response = await apiFunc(...args);
-        console.log(response)
-        // const handleResponse = await handelingJSON.handleSectionList(response.data, key_title, key_data, delkey);
+        const handleResponse = await handelingJSON.handleSectionList(response.data, key_title, key_data, delkey);
+        console.log(handelingJSON)
         setLoading(false);
         if (response.status > 500) return setError(true);
 
         setError(false);
-        setData(response);
+        setData(handleResponse);
     };
     
     return { data, error, loading, request }

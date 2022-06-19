@@ -131,7 +131,7 @@ export const Grades = () => {
     }
   
     return (
-      <View>
+      <View style={{width: '100%'}}>
         <View style={{height: 106, justifyContent: 'flex-end', flexDirection: 'column'}}> 
           <Text style={{color: "black", fontSize: 28, fontWeight: '700', padding: (48, 60, 40)}}>Grades</Text>
         </View>

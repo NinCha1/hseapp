@@ -7,10 +7,10 @@ import axiosInstance from './API';
 const {axiosContext} = useContext(AxiosContext);
 const authContext = useContext(AuthContext)
 
-const getTimetables = () => axiosContext.get('/schedule');
-// const getTimetables = (userId) => axiosInstance.get(`/timetable/${userId}/schedule`);
+// const getTimetables = () => axiosContext.get('/schedule');
+const getTimetables = (userId) => axiosInstance.get(`/timetable/${userId}/schedule`);
 const getAssigments = (userId) => axiosInstance.get(`/deadline/${userId}/deadlines`);
-const getProfile = () => axiosContext.get('/users/profile')
+// const getProfile = () => axiosContext.get('/users/profile')
 
 // const addTimetables = timetables => {
 //     const data = new FormData();

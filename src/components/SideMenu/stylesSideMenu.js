@@ -3,7 +3,7 @@ import Colors from '../../common/Colors';
 
 export default StyleSheet.create({
     tab: {
-        width: 250,
+        width: 282,
         backgroundColor: Colors.addBack,
         flexDirection: 'column',
         direction: 'flex',

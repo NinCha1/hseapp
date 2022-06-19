@@ -27,8 +27,6 @@ export const  Account = () => {
         }
     }
 
-    console.log(data)
-
     useEffect(() => {
         loadData();
     }, []);
