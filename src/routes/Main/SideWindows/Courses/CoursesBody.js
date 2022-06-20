@@ -1,35 +1,92 @@
-import React, {useState, useEffect} from 'react';
-import {View, Text, TextInput, FlatList, Image} from 'react-native';
+import React, {useState, useEffect, useContext} from 'react';
+import {View, Text, TextInput, FlatList, Image, ScrollView} from 'react-native';
 import Filter from '../../../../components/Filter/Filter';
 import styles from './styles';
 import coursesDATA from './coursesDATA';
 import MessagesScreen from './elements/Messages/Messages';
 import ChatNav from '../../../../navigation/ChatNav'
 import { NavigationHelpersContext } from '@react-navigation/native';
+import axios from 'axios';
+import { AuthContext } from '../../../../API/AuthContext';
+import { AxiosContext } from '../../../../API/AxiosProvider';
+import Spinner from '../../../../components/Spinner/Spinner';
 
 export const CoursesBody = ({navigation}) => {
-    const filters = {
-        subjCategory: [
-            {id: 'la', text: 'Linear Algebra'},
-            {id: 'ts', text: 'Time Series'},
-            {id: 'ecm', text: 'Econometrics'},
-            {id: 'de', text: 'Differential Equations'},
-            {id: 'db', text: 'Databases'},
-            {id: 'ml1', text: 'Machine Learning 1'},
-        ],
-        selectedItem: 'la',
+    const axiosContext = useContext(AxiosContext);
+    const authContext = useContext(AuthContext);
+    const [status, setStatus] = useState('loading');
+    const [courses, setCourses] = useState(null)
+    const [formatedData, setFormatedData] = useState([]);
+    const [courseInfo, setcourseInfo] = useState(null)
+
+    const yourConfig = {
+        headers: {
+           Authorization: "Bearer " + authContext.authState.accessToken
+        }
     }
 
-    const [filter, setFilter] = useState([]);
-    const [filterData, setfilterData] = useState([]);
-    const [title, setTitle] = useState('Linear Algebra')
-    // const navigaTo = () => navigation.navigate('Chat')
-    function navigaTo () {
-        navigation.navigate('Chat', {title: title})
+    const loadData = async () => {
+        setStatus('loading');
+        try {
+            const responseList = await axios.get(`https://hse-backend-test.herokuapp.com/users/courses`, yourConfig);
+            const responseInfo = await axios.get(`https://hse-backend-test.herokuapp.com/courses/course/?id=${filter}`, yourConfig);
+
+
+            // console.log(responseInfo.data)
+            processFilter(responseList.data.courses)
+            setcourseInfo(responseInfo.data)
+            setStatus('success');
+            
+        } catch (error) {
+            setStatus('error');
+        }
     }
+
+    useEffect(() => {
+        loadData();
+    }, [filter]);
+
+
+    const filters = {
+        subjCategory: 
+            formatedData
+        ,
+        selectedItem: null,
+    }
+
+
+    const processFilter = (dict) => {
+        const keys = Object.keys(dict);
+        keys.sort(function(lhs, rhs){
+            return new Date(lhs) - new Date(rhs); 
+        })
+
+        const object = {
+            id: undefined,
+            courseName: undefined
+        }
+
+        
+        const data = keys.map(key => {
+            const obj = Object.create(object)
+            obj.id = dict[key].id
+            obj.courseName = dict[key].courseName
+
+            return obj
+        })
+        setFormatedData(data)
+    }
+
+    const [filter, setFilter] = useState(1);
+    // const [filterData, setfilterData] = useState([]);
+    // const [title, setTitle] = useState('Linear Algebra')
+    // const navigaTo = () => navigation.navigate('Chat')
+    // function navigaTo () {
+    //     navigation.navigate('Chat', {title: title})
+    // }
 
     const HandleFilter = (value) => {
-        setFilter(value)
+        setFilter(value.filter)
     }
 
     useEffect(() => {
@@ -37,8 +94,7 @@ export const CoursesBody = ({navigation}) => {
     },[filter]);
 
     function filterCourses () {
-        const newData = JSON.parse(JSON.stringify(coursesDATA.DATA));
-        filtering(newData)
+        loadData(filter)
     }
 
     // const sendData = (titleHeader) => {
@@ -81,31 +137,39 @@ export const CoursesBody = ({navigation}) => {
         </View>
     )
 
-    function filtering (data) {
-        data = data.filter((item) => {
-            return item.id == filter.filter
-        })
-        setfilterData(data)
-        data.map((el) => setTitle(el.subjName))
-    }
+    // function filtering (data) {
+    //     data = data.filter((item) => {
+    //         return item.id == filter.filter
+    //     })
+    //     setfilterData(data)
+    //     data.map((el) => setTitle(el.subjName))
+    // }
 
-
+    if (status === 'loading') {
+        return (
+            <View style={styles.container}>
+                <Spinner/>
+            </View>
+            )
+    } else {
         return (
             <View style={styles.container}>
                 <View style={styles.headerContainer}>
-                    <Text style={styles.header}>
+                    {/* <Text style={styles.header}>
                         Courses · {title}
-                    </Text>
+                    </Text> */}
                 </View>
                 <View style={{flexDirection: 'row'}}>
 
                     <View style={styles.contentContainer}>
-                        <FlatList
+                        {/* <FlatList
                         data={filterData}
                         keyExtractor={(item, index) => index}
                         renderItem={Item}
                         showsVerticalScrollIndicator={false}
-                        /> 
+                        />  */}
+                        <Text style={{color: 'black'}}>{courseInfo.courseName}</Text>
+                        <Text style={{color: 'black'}}>{courseInfo.courseDesc}</Text>
                     </View>
 
                     <View style={styles.rightContainer}>
@@ -114,4 +178,5 @@ export const CoursesBody = ({navigation}) => {
                 </View>
             </View>
         )
+                    }
 }

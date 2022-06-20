@@ -5,6 +5,11 @@ import { Login } from './src/routes/Login/Login';
 import Main from './src/routes/Main/Main';
 import Spinner from './src/components/Spinner/Spinner';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Provider } from 'react-redux';
+import reducer from './src/reducer';
+import { createStore } from 'redux'
+
+const store = createStore(reducer);
 
 export const App = () => {
     const authContext = useContext(AuthContext);
@@ -48,7 +53,9 @@ export const App = () => {
     } else {
       return (
         <NavigationContainer>
-          <Main/>
+          <Provider store={store}>
+            <Main/>
+          </Provider>
         </NavigationContainer>
       )
     }

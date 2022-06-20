@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { View, SectionList, Text, SafeAreaView, Image, Button, FlatList } from 'react-native';
+import { View, SectionList, Text, Animated, SafeAreaView, Image, Button, FlatList, Easing, Platform } from 'react-native';
 import { useEffect } from 'react';
 import { ActivityIndicator } from 'react-native';
 import Calendar from '../../../../../../components/Calendar/Calendar';
@@ -9,8 +9,10 @@ import scheduleAPI from '../../../../../../API/scheduleAPI';
 import Spinner from '../../../../../../components/Spinner/Spinner'
 import { AuthContext } from '../../../../../../API/AuthContext';
 import { AxiosContext } from '../../../../../../API/AxiosProvider';
+import CustomModal from '../../../../../../components/CustomModal/CustomModal';
 import axios from 'axios';
 import { dateMonthHandler, dateTimeHandler, dateDateHandler } from '../../../../../../common/dateFormater'
+import { connect } from 'react-redux';
 
 // const Item = ({item}) => (
 //     <View style={styles.item}>
@@ -46,19 +48,48 @@ const Item = ({item}) => (
 );
 
 
-export const Timetable = () => {
+const Timetable = (props) => {
     const axiosContext = useContext(AxiosContext);
     const authContext = useContext(AuthContext);
     const [status, setStatus] = useState('loading');
     const [formatedData, setFormatedData] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalNum, setTotalNum] = useState(1)
-    // let currentPage = 0;
+
+    const state = { scale: new Animated.Value(1), opacity: new Animated.Value(1)}
 
     const yourConfig = {
         headers: {
            Authorization: "Bearer " + authContext.authState.accessToken
         }
+    }
+
+    console.log(authContext.authState.accessToken)
+
+    function toggleModal () {
+        if (props.action === 'openModel') {
+            Animated.timing(state.scale, {
+                toValue: 0.9,
+                duration: 300,
+                easing: Easing.in()
+              }).start();
+
+            Animated.spring(state.opacity, {
+                toValue: 0.5
+            }).start();
+        }
+
+        if (props.action === 'closeModal') {
+            Animated.timing(state.scale, {
+              toValue: 1,
+              duration: 300,
+              easing: Easing.in()
+            }).start();
+            Animated.spring(state.opacity, {
+              toValue: 1
+            }).start();
+        }
+
     }
 
     const fetchData = () => {
@@ -67,6 +98,12 @@ export const Timetable = () => {
         } 
         loadData()
     }
+
+    useEffect(() => {
+        toggleModal()
+    }, [props])
+
+    console.log(props)
 
     const loadData = async () => {
         setStatus('loading');
@@ -126,7 +163,10 @@ export const Timetable = () => {
     } else {
         return (
         <View style={styles.container}>
-            <View style={styles.container}>
+            <Animated.View style={[styles.container, {
+            transform: [{ scale: state.scale }],
+            opacity: state.opacity
+          }]}>
                     <SectionList
                         style={{marginLeft: 30}}
                         sections={formatedData}
@@ -141,7 +181,9 @@ export const Timetable = () => {
                     {/* <View style={{minWidth: '30%'}}>
                         <Calendar style={styles.components}/>
                     </View> */}
-            </View>
+                    <Button title='Yes' color="#841584" onPress={props.openModal}/>
+            </Animated.View>
+            <CustomModal/>
         </View>
         )
     }
@@ -169,3 +211,18 @@ export const Timetable = () => {
         // <View></View>
     // )
 }
+
+function mapStateToProps(state) {
+    return { action: state.action };
+}
+  
+function mapDispatchToProps(dispatch) {
+    return {
+      openModal: () =>
+        dispatch({
+          type: 'OPEN_MODAL'
+        })
+    };
+}
+  
+  export default connect(mapStateToProps, mapDispatchToProps)(Timetable);

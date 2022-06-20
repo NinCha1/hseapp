@@ -34,12 +34,12 @@ export const Grades = () => {
 
     const filters = {
         subjCategory: [
-            {id: 'la', text: 'Linear Algebra'},
-            {id: 'ts', text: 'Time Series'},
-            {id: 'ecm', text: 'Econometrics'},
-            {id: 'de', text: 'Differential Equations'},
-            {id: 'db', text: 'Databases'},
-            {id: 'ml1', text: 'Machine Learning 1'},
+            {id: 'la', courseName: 'Linear Algebra'},
+            {id: 'ts', courseName: 'Time Series'},
+            {id: 'ecm', courseName: 'Econometrics'},
+            {id: 'de', courseName: 'Differential Equations'},
+            {id: 'db', courseName: 'Databases'},
+            {id: 'ml1', courseName: 'Machine Learning 1'},
         ],
         selectedItem: 'la',
     }

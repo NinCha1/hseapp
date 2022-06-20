@@ -28,7 +28,7 @@ export default class Filter extends Component {
             >
                 <View style={{padding: 2, flexDirection: 'row', width: '100%'}}>
                     <View style={{backgroundColor, width: '100%', height: 30, borderRadius: 8, justifyContent:'center'}}>
-                        <Text style={{marginLeft: 10, fontSize: 16, color: colortext}}>{item.text}</Text>
+                        <Text style={{marginLeft: 10, fontSize: 16, color: colortext}}>{item.courseName}</Text>
                     </View>
                 </View>
             </TouchableOpacity>

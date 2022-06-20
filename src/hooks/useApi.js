@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import handelingJSON from '../API/handelingJSON';
 
-export default useApi = (apiFunc) => {
+export default useApi = (apiFunc, key_title, key_data, delkey) => {
     console.log(apiFunc)
     const [data, setData] = useState({});
     const [error, setError] = useState(false);
