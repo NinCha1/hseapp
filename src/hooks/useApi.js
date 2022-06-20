@@ -2,8 +2,7 @@ import {useState} from 'react';
 import handelingJSON from '../API/handelingJSON';
 
 export default useApi = (apiFunc, key_title, key_data, delkey) => {
-    console.log(apiFunc)
-    const [data, setData] = useState({});
+    const [data, setData] = useState([]);
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);
 
@@ -11,7 +10,6 @@ export default useApi = (apiFunc, key_title, key_data, delkey) => {
         setLoading(true);
         const response = await apiFunc(...args);
         const handleResponse = await handelingJSON.handleSectionList(response.data, key_title, key_data, delkey);
-        console.log(handelingJSON)
         setLoading(false);
         if (response.status > 500) return setError(true);
 

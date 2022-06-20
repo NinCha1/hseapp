@@ -4,6 +4,7 @@ import SideMenu from '../../components/SideMenu/SideMenu';
 import {Schedule} from './SideWindows/Schedule/Schedule';
 import styles from './stylesMain';
 import { Login } from '../Login/Login';
+import CustomModal from '../../components/CustomModal/CustomModal';
 
 
 
@@ -30,6 +31,7 @@ export default class Main extends Component {
                 <SideMenu style={styles.sideMenu} parentCallback = {this.callBackFunction}  onPress={this.navigateToLogin}/>
                 {/* <SideMenuNav screenData = {this.state.screen} nameScreen={this.state.name}/> */}
                 <this.state.screen style={styles.show}/>
+                <CustomModal/>
             </View>
         )
     }

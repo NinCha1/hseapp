@@ -25,33 +25,37 @@ export const CoursesBody = ({navigation}) => {
         }
     }
 
-    const loadData = async () => {
+    const loadCourses = async () => {
         setStatus('loading');
         try {
             const responseList = await axios.get(`https://hse-backend-test.herokuapp.com/users/courses`, yourConfig);
-            const responseInfo = await axios.get(`https://hse-backend-test.herokuapp.com/courses/course/?id=${filter}`, yourConfig);
-
-
-            // console.log(responseInfo.data)
             processFilter(responseList.data.courses)
-            setcourseInfo(responseInfo.data)
-            setStatus('success');
-            
         } catch (error) {
             setStatus('error');
         }
     }
 
+    const loadCourseInfo = async () => {
+        setStatus('loading');
+        try {
+            const responseList = await axios.get(`https://hse-backend-test.herokuapp.com/courses/course/?id=${filter}`, yourConfig);
+            setcourseInfo(responseList.data)
+            setStatus('success')
+        } catch (error) {
+            setStatus('error')
+        }
+    }
+
     useEffect(() => {
-        loadData();
-    }, [filter]);
+        loadCourses();
+    }, []);
 
 
     const filters = {
         subjCategory: 
             formatedData
         ,
-        selectedItem: null,
+        selectedItem: 1,
     }
 
 
@@ -80,7 +84,7 @@ export const CoursesBody = ({navigation}) => {
     const [filter, setFilter] = useState(1);
     // const [filterData, setfilterData] = useState([]);
     // const [title, setTitle] = useState('Linear Algebra')
-    // const navigaTo = () => navigation.navigate('Chat')
+    const navigaTo = () => navigation.navigate('Chat')
     // function navigaTo () {
     //     navigation.navigate('Chat', {title: title})
     // }
@@ -90,12 +94,8 @@ export const CoursesBody = ({navigation}) => {
     }
 
     useEffect(() => {
-        filterCourses();
+        loadCourseInfo()
     },[filter]);
-
-    function filterCourses () {
-        loadData(filter)
-    }
 
     // const sendData = (titleHeader) => {
     //     parentCallBack(titleHeader)
@@ -105,7 +105,7 @@ export const CoursesBody = ({navigation}) => {
     const Item = ({item}) => (
         <View>
             <Text style={styles.headerList}>Chats</Text>
-            <MessagesScreen navTo={navigaTo}/>
+            {/* <MessagesScreen navTo={navigaTo}/> */}
             <Text style={styles.headerList}>Course description</Text>
             <Text style={styles.courseDescription}>{item.courseDesc}</Text>
 
@@ -155,9 +155,9 @@ export const CoursesBody = ({navigation}) => {
         return (
             <View style={styles.container}>
                 <View style={styles.headerContainer}>
-                    {/* <Text style={styles.header}>
-                        Courses · {title}
-                    </Text> */}
+                    <Text style={styles.header}>
+                        Courses · {courseInfo.courseName}
+                    </Text>
                 </View>
                 <View style={{flexDirection: 'row'}}>
 
@@ -168,15 +168,25 @@ export const CoursesBody = ({navigation}) => {
                         renderItem={Item}
                         showsVerticalScrollIndicator={false}
                         />  */}
-                        <Text style={{color: 'black'}}>{courseInfo.courseName}</Text>
-                        <Text style={{color: 'black'}}>{courseInfo.courseDesc}</Text>
-                    </View>
+                            <Text style={styles.headerList}>Chats</Text>
+                            <View style={{width: '100%', height: '50%'}}>
+                            <MessagesScreen navTo={navigaTo}/>
+                            </View>
+                            <Text style={styles.headerList}>Course description</Text>
+                            <Text style={styles.courseDescription} selectable={true}>{courseInfo.courseDesc}</Text>
+
+                            <Text style={styles.headerList}>Grading Formula</Text>
+
+                            <Text style={styles.headerList}>Teaching Staff</Text>
+                            </View>
 
                     <View style={styles.rightContainer}>
                         <Filter filter={filters} HandleFilter={HandleFilter}/>
                     </View>
                 </View>
+
             </View>
+
         )
                     }
 }

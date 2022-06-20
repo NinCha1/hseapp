@@ -1,7 +1,5 @@
-import React, { useContext, useState } from 'react';
-import { View, SectionList, Text, Animated, SafeAreaView, Image, Button, FlatList, Easing, Platform } from 'react-native';
-import { useEffect } from 'react';
-import { ActivityIndicator } from 'react-native';
+import React, { useContext, useState, useEffect } from 'react';
+import { View, SectionList, Text, Animated, SafeAreaView, Image, Button, FlatList, Easing, Platform, TouchableOpacity, Modal } from 'react-native';
 import Calendar from '../../../../../../components/Calendar/Calendar';
 import styles from './styles';
 import useApi from '../../../../../../hooks/useApi';
@@ -12,7 +10,9 @@ import { AxiosContext } from '../../../../../../API/AxiosProvider';
 import CustomModal from '../../../../../../components/CustomModal/CustomModal';
 import axios from 'axios';
 import { dateMonthHandler, dateTimeHandler, dateDateHandler } from '../../../../../../common/dateFormater'
-import { connect } from 'react-redux';
+import { connect, useSelector, useDispatch } from 'react-redux';
+import ModalContent from '../../../../../../components/CustomModal/ModalContent';
+
 
 // const Item = ({item}) => (
 //     <View style={styles.item}>
@@ -30,31 +30,19 @@ import { connect } from 'react-redux';
 //     </View>
 // );
 
-const Item = ({item}) => (
-
-    <View style={styles.item}>
-        <View style={styles.timeCont}>
-            <Text style={styles.timeStart}>{dateTimeHandler(item.timeStart)}</Text>
-            <Text style={styles.timeEnd}>{dateTimeHandler(item.timeEnd)}</Text>
-        </View>
-        <View style={styles.delimeter}/>
-        <View style={styles.infoCont}>
-            <Text style={styles.type}>{item.lessonType}</Text>
-            <Text style={styles.subjectName} selectable={true}>{item.lessonName}</Text>
-            <Text style={styles.visitType} selectable={true}>{item.zoomLink}</Text>
-            <Image style={styles.icon} source={require('../../../../../../../assets/img/online.png')}/>
-        </View>
-    </View>
-);
 
 
-const Timetable = (props) => {
+export const Timetable = () => {
     const axiosContext = useContext(AxiosContext);
     const authContext = useContext(AuthContext);
     const [status, setStatus] = useState('loading');
     const [formatedData, setFormatedData] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalNum, setTotalNum] = useState(1)
+
+    const action = useSelector((state) => state)
+
+    const dispatch = useDispatch()
 
     const state = { scale: new Animated.Value(1), opacity: new Animated.Value(1)}
 
@@ -64,10 +52,29 @@ const Timetable = (props) => {
         }
     }
 
-    console.log(authContext.authState.accessToken)
+    const Item = ({item}) => (
+        <TouchableOpacity style={styles.item} onPress={() => {
+            dispatch({type: 'OPEN_MODAL'}); 
+            return (
+                <ModalContent data={item}/>
+            )
+            }}>
+            <View style={styles.timeCont}>
+                <Text style={styles.timeStart}>{dateTimeHandler(item.timeStart)}</Text>
+                <Text style={styles.timeEnd}>{dateTimeHandler(item.timeEnd)}</Text>
+            </View>
+            <View style={styles.delimeter}/>
+            <View style={styles.infoCont}>
+                <Text style={styles.type}>{item.lessonType}</Text>
+                <Text style={styles.subjectName} selectable={true}>{item.lessonName}</Text>
+                <Text style={styles.visitType} selectable={true}>{item.zoomLink}</Text>
+                <Image style={styles.icon} source={require('../../../../../../../assets/img/online.png')}/>
+            </View>
+        </TouchableOpacity>
+    );
 
     function toggleModal () {
-        if (props.action === 'openModel') {
+        if (action.action == 'openModal') {
             Animated.timing(state.scale, {
                 toValue: 0.9,
                 duration: 300,
@@ -79,7 +86,7 @@ const Timetable = (props) => {
             }).start();
         }
 
-        if (props.action === 'closeModal') {
+        if (action.action == 'closeModal') {
             Animated.timing(state.scale, {
               toValue: 1,
               duration: 300,
@@ -101,16 +108,12 @@ const Timetable = (props) => {
 
     useEffect(() => {
         toggleModal()
-    }, [props])
-
-    console.log(props)
+    }, [])
 
     const loadData = async () => {
         setStatus('loading');
         try {
-            console.log(currentPage)
             const response = await axios.get(`https://hse-backend-test.herokuapp.com/schedule?page=${currentPage}`, yourConfig);
-            console.log(currentPage)
             processData(response.data.timeTable)
             setTotalNum(response.data.pageNum)
             setStatus('success');
@@ -154,7 +157,6 @@ const Timetable = (props) => {
     }
 
     if (status === 'loading') {
-
         return (
             <View style={styles.container}>
                 <Spinner/>
@@ -178,12 +180,10 @@ const Timetable = (props) => {
                         showsVerticalScrollIndicator={false}
                         onEndReached={handleScroll}
                     />
-                    {/* <View style={{minWidth: '30%'}}>
+                    <View style={{minWidth: '30%'}}>
                         <Calendar style={styles.components}/>
-                    </View> */}
-                    <Button title='Yes' color="#841584" onPress={props.openModal}/>
+                    </View>
             </Animated.View>
-            <CustomModal/>
         </View>
         )
     }
@@ -211,18 +211,4 @@ const Timetable = (props) => {
         // <View></View>
     // )
 }
-
-function mapStateToProps(state) {
-    return { action: state.action };
-}
   
-function mapDispatchToProps(dispatch) {
-    return {
-      openModal: () =>
-        dispatch({
-          type: 'OPEN_MODAL'
-        })
-    };
-}
-  
-  export default connect(mapStateToProps, mapDispatchToProps)(Timetable);

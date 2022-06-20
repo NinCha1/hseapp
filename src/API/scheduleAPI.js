@@ -4,8 +4,8 @@ import { AxiosContext } from './AxiosProvider';
 import axiosInstance from './API';
 
 
-const {axiosContext} = useContext(AxiosContext);
-const authContext = useContext(AuthContext)
+// const {axiosContext} = useContext(AxiosContext);
+// const authContext = useContext(AuthContext)
 
 // const getTimetables = () => axiosContext.get('/schedule');
 const getTimetables = (userId) => axiosInstance.get(`/timetable/${userId}/schedule`);

@@ -68,7 +68,7 @@ const ChatScreen = () => {
           return (
           <View style={{alignSelf: 'flex-end', padding: 12, flexDirection: 'row'}}>
             <View style={{flexDirection: 'row'}}>
-              <Text style={{color: '#000000', fontSize: 14, fontWeight: '400', marginRight: 10, maxWidth: 200}}>{item.text}</Text>
+              <Text selectable={true} style={{color: '#000000', fontSize: 14, fontWeight: '400', marginRight: 10, maxWidth: 200}}>{item.text}</Text>
               <Text style={{color: 'rgba(0, 0, 0, 0.3)', fontSize: 14}}>{item.createdAt}</Text>
             </View>
           </View>
@@ -79,10 +79,10 @@ const ChatScreen = () => {
             <View style={{backgroundColor: '#C4C4C4', borderRadius: 30, width: 48, height: 48,  marginRight: 12}}/>
             <View style={{flexDirection: 'column'}}>
               <View style={{flexDirection: 'row', marginBottom: 8}}>
-                <Text style={{color: '#1F4EC7', fontSize: 14, fontWeight: '500', marginRight: 8}}>{item.userName}</Text>
+                <Text selectable={true} style={{color: '#1F4EC7', fontSize: 14, fontWeight: '500', marginRight: 8}}>{item.userName}</Text>
                 <Text style={{color: 'rgba(0, 0, 0, 0.3)', fontSize: 14}}>{item.createdAt}</Text>
               </View>
-              <Text style={{color: '#000000', fontSize: 14, fontWeight: '400'}}>{item.text}</Text>
+              <Text selectable={true} style={{color: '#000000', fontSize: 14, fontWeight: '400'}}>{item.text}</Text>
             </View>
 
           </View>
