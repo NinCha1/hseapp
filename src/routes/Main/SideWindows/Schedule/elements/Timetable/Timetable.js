@@ -13,22 +13,7 @@ import { dateMonthHandler, dateTimeHandler, dateDateHandler } from '../../../../
 import { connect, useSelector, useDispatch } from 'react-redux';
 import ModalContent from '../../../../../../components/CustomModal/ModalContent';
 
-
-// const Item = ({item}) => (
-//     <View style={styles.item}>
-//         <View style={styles.timeCont}>
-//             <Text style={styles.timeStart}>{item.timeStart}</Text>
-//             <Text style={styles.timeEnd}>{item.timeEnd}</Text>
-//         </View>
-//         <View style={styles.delimeter}/>
-//         <View style={styles.infoCont}>
-//             <Text style={styles.type}>{item.type}</Text>
-//             <Text style={styles.subjectName}>{item.subjectName}</Text>
-//             <Text style={styles.visitType}>{item.visitType}</Text>
-//             <Image style={styles.icon} source={require('../../../../../../../assets/img/online.png')}/>
-//         </View>
-//     </View>
-// );
+const zoomIcon = require('../../../../../../../assets/img/online.png')
 
 
 
@@ -53,12 +38,7 @@ export const Timetable = () => {
     }
 
     const Item = ({item}) => (
-        <TouchableOpacity style={styles.item} onPress={() => {
-            dispatch({type: 'OPEN_MODAL'}); 
-            return (
-                <ModalContent data={item}/>
-            )
-            }}>
+        <View style={styles.item}>
             <View style={styles.timeCont}>
                 <Text style={styles.timeStart}>{dateTimeHandler(item.timeStart)}</Text>
                 <Text style={styles.timeEnd}>{dateTimeHandler(item.timeEnd)}</Text>
@@ -68,9 +48,9 @@ export const Timetable = () => {
                 <Text style={styles.type}>{item.lessonType}</Text>
                 <Text style={styles.subjectName} selectable={true}>{item.lessonName}</Text>
                 <Text style={styles.visitType} selectable={true}>{item.zoomLink}</Text>
-                <Image style={styles.icon} source={require('../../../../../../../assets/img/online.png')}/>
+                <Image style={styles.icon} source={zoomIcon}/>
             </View>
-        </TouchableOpacity>
+        </View>
     );
 
     function toggleModal () {
@@ -187,28 +167,5 @@ export const Timetable = () => {
         </View>
         )
     }
-
-    // return (
-        // <SafeAreaView style={styles.container}>
-        //     {getTimetableApi.loading ? <Spinner/> : (
-        //         <View style={styles.container}>
-        //             <SectionList
-        //                 style={{marginLeft: 30}}
-        //                 sections={getTimetableApi.data}
-        //                 renderItem={Item}
-        //                 renderSectionHeader={({section}) => (
-        //                     <Text style={styles.header}>{section.title}</Text>
-        //                 )} 
-        //                 keyExtractor={(item, index) => index.toString()}
-        //                 showsVerticalScrollIndicator={false}
-        //             />
-        //             <View style={{minWidth: '30%'}}>
-        //                 {/* <Calendar style={styles.components}/> */}
-        //             </View>
-        //         </View>
-        //             )}
-        // </SafeAreaView>
-        // <View></View>
-    // )
 }
   

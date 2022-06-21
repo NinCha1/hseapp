@@ -1,8 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { SafeAreaView, ScrollView, StyleSheet, Text, View, TouchableOpacity, FlatList } from 'react-native';
-import Message from '../../../../../../components/Message';
-import MessageInput from '../../../../../../components/MessageInput';
-import { useCurrentRoomId, useRoom, useRoomMessages } from '../../../../../../API/store';
 import styles from './styles';
 
 
@@ -41,6 +38,9 @@ const MessagesScreen = ({navTo}) => {
             <FlatList
             data={Messages}
             keyExtractor={item=>item.id}
+            scrollEnabled={false}
+            showsHorizontalScrollIndicator={false}
+            showsVerticalScrollIndicator={false}
             renderItem={({item}) => (
                 <TouchableOpacity onPress={navTo}>
                     <View style={styles.userInfo}>

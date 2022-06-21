@@ -5,6 +5,7 @@ import {
     TextInput,
     TouchableOpacity,
     Alert,
+    Linking,
 } from 'react-native';
 import styles from './styles';
 import commonStyles from '../../common/styles';
@@ -74,6 +75,7 @@ export const Login = () => {
                             placeholderTextColor = "rgba(0, 0, 0, 0.5)" 
                             onChangeText={text => setEmail(text)} 
                             value={email}
+                            autoCorrect={false}
                         />
 
                         <TextInput 
@@ -83,11 +85,12 @@ export const Login = () => {
                             onChangeText={text => setPassword(text)} 
                             value={password} 
                             secureTextEntry
+                            autoCorrect={false}
                         />
         
                         <PrimaryButton title='Log in' style={styles.btn} onPress={() => onLogin()}/>
 
-                        <TouchableOpacity style={[styles.btn, {justifyContent: 'center'}]} onPress={() => {}}>
+                        <TouchableOpacity style={[styles.btn, {justifyContent: 'center'}]} onPress={() => Linking.openURL("https://www.hse.ru/en/")}>
                             <Text style={{color: '#1F4EC7', }}>Can't log in?</Text>
                         </TouchableOpacity>
                         

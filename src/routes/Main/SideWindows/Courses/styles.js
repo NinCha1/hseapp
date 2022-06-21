@@ -15,7 +15,7 @@ export default StyleSheet.create(
         },
 
         headerContainer: {
-            height: 106,
+            height: 76,
             justifyContent: 'flex-end',
             flexDirection: 'column',
             width: '100%',

@@ -12,7 +12,7 @@ import { AxiosContext } from '../../../../API/AxiosProvider';
 import Spinner from '../../../../components/Spinner/Spinner';
 
 export const CoursesBody = ({navigation}) => {
-    const axiosContext = useContext(AxiosContext);
+    const {publicAxios} = useContext(AxiosContext);
     const authContext = useContext(AuthContext);
     const [status, setStatus] = useState('loading');
     const [courses, setCourses] = useState(null)
@@ -28,7 +28,7 @@ export const CoursesBody = ({navigation}) => {
     const loadCourses = async () => {
         setStatus('loading');
         try {
-            const responseList = await axios.get(`https://hse-backend-test.herokuapp.com/users/courses`, yourConfig);
+            const responseList = await publicAxios.get(`https://hse-backend-test.herokuapp.com/users/courses`, yourConfig);
             processFilter(responseList.data.courses)
         } catch (error) {
             setStatus('error');
@@ -169,17 +169,16 @@ export const CoursesBody = ({navigation}) => {
                         showsVerticalScrollIndicator={false}
                         />  */}
                             <Text style={styles.headerList}>Chats</Text>
-                            <View style={{width: '100%', height: '50%'}}>
+                            <View style={{width: '100%', height: 300}}>
                             <MessagesScreen navTo={navigaTo}/>
                             </View>
                             <Text style={styles.headerList}>Course description</Text>
                             <Text style={styles.courseDescription} selectable={true}>{courseInfo.courseDesc}</Text>
 
-                            <Text style={styles.headerList}>Grading Formula</Text>
+                            {/* <Text style={styles.headerList}>Grading Formula</Text> */}
 
-                            <Text style={styles.headerList}>Teaching Staff</Text>
-                            </View>
-
+                            {/* <Text style={styles.headerList}>Teaching Staff</Text> */}
+                    </View>
                     <View style={styles.rightContainer}>
                         <Filter filter={filters} HandleFilter={HandleFilter}/>
                     </View>

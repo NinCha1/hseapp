@@ -9,7 +9,7 @@
   <Identity
     Name="e4ca4d22-5f1f-4a2b-ab2b-13c125e7d655"
     Publisher="CN=ninou"
-    Version="1.0.0.0" />
+    Version="1.0.1.0" />
 
   <mp:PhoneIdentity PhoneProductId="e4ca4d22-5f1f-4a2b-ab2b-13c125e7d655" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 

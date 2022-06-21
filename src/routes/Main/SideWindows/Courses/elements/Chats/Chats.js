@@ -33,21 +33,21 @@ const ChatScreen = () => {
     setMessages([
       {
         id: 3,
-        text: 'joe mama',
+        text: 'HW3 is checked)',
         createdAt: '14:40',
-        userName: 'Zamkov',
+        userName: 'TA 193 group',
       },
       {
         id: 2,
-        text: 'Иуп)',
+        text: 'Tommorow the seminar is going to be online',
         createdAt: '15:40',
-        userName: 'HSE',
+        userName: 'Demeshev Boris',
       },
 
       {
         id: 1,
-        text: '(',
-        createdAt: '14:40',
+        text: 'Thank you!',
+        createdAt: '16:15',
         userName: 'Nina'
       },
     ]);
@@ -68,21 +68,35 @@ const ChatScreen = () => {
           return (
           <View style={{alignSelf: 'flex-end', padding: 12, flexDirection: 'row'}}>
             <View style={{flexDirection: 'row'}}>
-              <Text selectable={true} style={{color: '#000000', fontSize: 14, fontWeight: '400', marginRight: 10, maxWidth: 200}}>{item.text}</Text>
-              <Text style={{color: 'rgba(0, 0, 0, 0.3)', fontSize: 14}}>{item.createdAt}</Text>
+              <Text selectable={true} style={{color: '#000000', fontSize: 14, 
+              fontWeight: '400', marginRight: 10, maxWidth: 200}}>
+                {item.text}
+              </Text>
+              <Text style={{color: 'rgba(0, 0, 0, 0.3)', fontSize: 14}}>
+                {item.createdAt}
+                </Text>
             </View>
           </View>
           )
         } else {
           return (
           <View style={{alignSelf: 'flex-start', padding: 12, flexDirection: 'row', width: 296}}>
-            <View style={{backgroundColor: '#C4C4C4', borderRadius: 30, width: 48, height: 48,  marginRight: 12}}/>
+            <View style={{backgroundColor: '#C4C4C4', borderRadius: 30, 
+            width: 48, height: 48,  marginRight: 12}}/>
             <View style={{flexDirection: 'column'}}>
               <View style={{flexDirection: 'row', marginBottom: 8}}>
-                <Text selectable={true} style={{color: '#1F4EC7', fontSize: 14, fontWeight: '500', marginRight: 8}}>{item.userName}</Text>
-                <Text style={{color: 'rgba(0, 0, 0, 0.3)', fontSize: 14}}>{item.createdAt}</Text>
+                <Text selectable={true} style={{color: '#1F4EC7', fontSize: 14, 
+                fontWeight: '500', marginRight: 8}}>
+                  {item.userName}
+                </Text>
+                <Text style={{color: 'rgba(0, 0, 0, 0.3)', fontSize: 14}}>
+                  {item.createdAt}
+                </Text>
               </View>
-              <Text selectable={true} style={{color: '#000000', fontSize: 14, fontWeight: '400'}}>{item.text}</Text>
+              <Text selectable={true} style={{color: '#000000', fontSize: 14, 
+              fontWeight: '400'}}>
+                {item.text}
+              </Text>
             </View>
 
           </View>

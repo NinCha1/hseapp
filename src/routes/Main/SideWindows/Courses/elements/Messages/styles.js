@@ -1,6 +1,7 @@
 import { StyleSheet } from "react-native";
 import Colors from "../../../../../../common/Colors";
-import { Inter_100Thin } from "@expo-google-fonts/inter";
+
+
 export default StyleSheet.create(
     {
         container: {
@@ -9,6 +10,8 @@ export default StyleSheet.create(
             paddingRight: 20,
             alignItems: 'flex-start',
             backgroundColor: '#ffffff',
+            // width: '100%',
+            // height: '100%'
         },
 
         card: {

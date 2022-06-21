@@ -24,7 +24,7 @@ class CustomModal extends React.Component {
     toggleModal = () => {
         if (this.props.action === 'openModal') {
             Animated.spring(this.state.top, {
-              toValue: 0
+              toValue: 0,
             }).start();
           }
         if (this.props.action === 'closeModal') {
@@ -33,12 +33,6 @@ class CustomModal extends React.Component {
             }).start();
         }
     }
-
-    // closeModal = () => {
-    //     Animated.spring(this.state.top, {
-    //       toValue: screenHeight
-    //     }).start();
-    // };
 
     render() {
         return (
@@ -57,11 +51,11 @@ class CustomModal extends React.Component {
                 }}>
                 <Text>
                 </Text>
-                <View style={{ backgroundColor: '#eaeaea', height: '80%', width: '80%', padding: 15}}>
-                        <TouchableOpacity onPress={this.props.closeModal} style={{height: 30, width: 50, alignSelf: 'flex-end'}}>
+                <View style={{ backgroundColor: 'white', height: '90%', width: 820, padding: 60}}>
+                        <TouchableOpacity onPress={this.props.closeModal} style={{height: 30, 
+                          width: 50, alignSelf: 'flex-end'}}>
                             <Text style={{color: 'black'}}>Close</Text>
                         </TouchableOpacity>
-
                         <ModalContent/>
                 </View>
             </Animated.View>
