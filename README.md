@@ -2,7 +2,7 @@
 
 ## Author
 
-Nina Sharara
+Nina Charara
 
 ## Description
 
